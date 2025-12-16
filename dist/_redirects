@@ -1,1 +1,12 @@
+# Redirects for Netlify
+# Each demo folder serves its own index.html
+
+/demos/kapper/*    /demos/kapper/index.html    200
+/demos/restaurant/*    /demos/restaurant/index.html    200
+/demos/fitness/*    /demos/fitness/index.html    200
+/demos/advocaat/*    /demos/advocaat/index.html    200
+/demos/tandarts/*    /demos/tandarts/index.html    200
+/demos/bouwbedrijf/*    /demos/bouwbedrijf/index.html    200
+
+# Main page
 /*    /index.html   200
