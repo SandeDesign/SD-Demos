@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juridis Advocaten - Uw Partner in Recht</title>
+    <meta name="description" content="Juridis Advocaten - Gespecialiseerd in ondernemingsrecht, arbeidsrecht en vastgoedrecht. Persoonlijke aanpak, deskundig advies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #818cf8;
+            --navy: #1e1b4b;
+            --dark: #0f0f23;
+            --gray: #64748b;
+            --light: #f8fafc;
+            --gold: #d4af37;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Libre Baskerville', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.875rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-logo {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.875rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80') center/cover;
+            opacity: 0.3;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--navy) 50%, transparent 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.2);
+            color: var(--primary-light);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: white;
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .trust-item h3 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .expertise-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .expertise-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            color: var(--navy);
+        }
+
+        .expertise-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .expertise-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .expertise-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-image {
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--navy);
+        }
+
+        .team-info .role {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-info .specialty {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            padding: 6rem 2rem;
+            background: var(--navy);
+            color: white;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .why-us-content h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-us-content p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .why-us-list {
+            list-style: none;
+        }
+
+        .why-us-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-us-list .icon {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .why-us-list h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .why-us-list p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .why-us-image {
+            position: relative;
+        }
+
+        .why-us-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .contact-item h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .contact-form {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 4rem 2rem 2rem;
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-us-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">&#9878;</div>
+            Juridis
+        </a>
+        <ul class="nav-links">
+            <li><a href="#expertise">Expertise</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#waarom-wij">Waarom Wij</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Gratis Consult</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge">Advocatenkantoor Amsterdam</span>
+                <h1>Deskundig Juridisch Advies, Persoonlijke Aanpak</h1>
+                <p>Al meer dan 25 jaar staan wij ondernemers en particulieren bij met helder juridisch advies en doelgerichte oplossingen.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Vrijblijvend Gesprek</a>
+                    <a href="#expertise" class="btn btn-secondary">Onze Expertise</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h3>25+</h3>
+                    <p>Jaar Ervaring</p>
+                </div>
+                <div class="trust-item">
+                    <h3>3000+</h3>
+                    <p>Zaken Behandeld</p>
+                </div>
+                <div class="trust-item">
+                    <h3>98%</h3>
+                    <p>Klanttevredenheid</p>
+                </div>
+                <div class="trust-item">
+                    <h3>15</h3>
+                    <p>Gespecialiseerde Advocaten</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Onze Expertise</span>
+                <h2>Rechtsgebieden</h2>
+                <p>Wij zijn gespecialiseerd in verschillende rechtsgebieden en bieden maatwerk voor uw specifieke situatie.</p>
+            </div>
+            <div class="expertise-grid">
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#127970;</div>
+                    <h3>Ondernemingsrecht</h3>
+                    <p>Juridische begeleiding bij oprichting, fusies, overnames en alle zakelijke vraagstukken voor uw onderneming.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#128188;</div>
+                    <h3>Arbeidsrecht</h3>
+                    <p>Advies over arbeidscontracten, ontslag, reorganisatie en geschillen tussen werkgever en werknemer.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#127968;</div>
+                    <h3>Vastgoedrecht</h3>
+                    <p>Begeleiding bij aan- en verkoop, huurovereenkomsten, bouwrecht en vastgoedtransacties.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#128106;</div>
+                    <h3>Familierecht</h3>
+                    <p>Persoonlijke begeleiding bij echtscheiding, alimentatie, voogdij en huwelijkse voorwaarden.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#128176;</div>
+                    <h3>Incasso & Geschillen</h3>
+                    <p>Effectieve incassoprocedures en procesvoering bij commerciële geschillen.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+                <div class="expertise-card">
+                    <div class="expertise-icon">&#128196;</div>
+                    <h3>Contractenrecht</h3>
+                    <p>Opstellen, beoordelen en onderhandelen van contracten en algemene voorwaarden.</p>
+                    <a href="#" class="expertise-link">Meer informatie &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Ons Team</span>
+                <h2>Ervaren Advocaten</h2>
+                <p>Ontmoet de professionals die klaarstaan om u bij te staan.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face" alt="Mr. Willem van der Berg">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mr. Willem van der Berg</h3>
+                        <p class="role">Managing Partner</p>
+                        <p class="specialty">Ondernemingsrecht</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face" alt="Mr. Sophie Jansen">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mr. Sophie Jansen</h3>
+                        <p class="role">Senior Advocaat</p>
+                        <p class="specialty">Arbeidsrecht</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face" alt="Mr. Peter de Groot">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mr. Peter de Groot</h3>
+                        <p class="role">Partner</p>
+                        <p class="specialty">Vastgoedrecht</p>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face" alt="Mr. Lisa Bakker">
+                    </div>
+                    <div class="team-info">
+                        <h3>Mr. Lisa Bakker</h3>
+                        <p class="role">Advocaat</p>
+                        <p class="specialty">Familierecht</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us" id="waarom-wij">
+        <div class="container">
+            <div class="why-us-grid">
+                <div class="why-us-content">
+                    <h2>Waarom Kiezen voor Juridis?</h2>
+                    <p>Wij combineren diepgaande juridische expertise met een persoonlijke benadering. Uw zaak is bij ons in goede handen.</p>
+                    <ul class="why-us-list">
+                        <li>
+                            <div class="icon">&#10003;</div>
+                            <div>
+                                <h4>Transparante Tarieven</h4>
+                                <p>Geen verrassingen achteraf. Heldere afspraken over kosten vooraf.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">&#10003;</div>
+                            <div>
+                                <h4>Persoonlijke Aanpak</h4>
+                                <p>Eén vaste advocaat die uw zaak van begin tot eind begeleidt.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">&#10003;</div>
+                            <div>
+                                <h4>Snelle Respons</h4>
+                                <p>Binnen 24 uur reactie op uw vraag. Spoedzaken behandelen wij direct.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">&#10003;</div>
+                            <div>
+                                <h4>Resultaatgericht</h4>
+                                <p>Wij focussen op praktische oplossingen, niet op juridisch jargon.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="why-us-image">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=500&fit=crop" alt="Juridis kantoor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Neem Contact Op</h2>
+                    <p>Heeft u een juridische vraag? Neem vrijblijvend contact met ons op voor een eerste gesprek.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">&#128205;</div>
+                            <div>
+                                <h4>Adres</h4>
+                                <p>Herengracht 500, Amsterdam</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">&#128222;</div>
+                            <div>
+                                <h4>Telefoon</h4>
+                                <p>020 - 555 1234</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">&#9993;</div>
+                            <div>
+                                <h4>E-mail</h4>
+                                <p>info@juridis.nl</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label>Naam</label>
+                        <input type="text" placeholder="Uw volledige naam">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" placeholder="Uw e-mailadres">
+                    </div>
+                    <div class="form-group">
+                        <label>Rechtsgebied</label>
+                        <select>
+                            <option>Selecteer rechtsgebied</option>
+                            <option>Ondernemingsrecht</option>
+                            <option>Arbeidsrecht</option>
+                            <option>Vastgoedrecht</option>
+                            <option>Familierecht</option>
+                            <option>Anders</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Uw vraag</label>
+                        <textarea rows="4" placeholder="Beschrijf kort uw situatie"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verstuur Bericht</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Juridis Advocaten</h3>
+                    <p>Al meer dan 25 jaar uw partner voor deskundig juridisch advies in Amsterdam.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtsgebieden</h4>
+                    <ul>
+                        <li><a href="#">Ondernemingsrecht</a></li>
+                        <li><a href="#">Arbeidsrecht</a></li>
+                        <li><a href="#">Vastgoedrecht</a></li>
+                        <li><a href="#">Familierecht</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Over Ons</h4>
+                    <ul>
+                        <li><a href="#">Ons Team</a></li>
+                        <li><a href="#">Werkwijze</a></li>
+                        <li><a href="#">Tarieven</a></li>
+                        <li><a href="#">Vacatures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Herengracht 500</a></li>
+                        <li><a href="#">1017 CB Amsterdam</a></li>
+                        <li><a href="tel:0205551234">020 - 555 1234</a></li>
+                        <li><a href="mailto:info@juridis.nl">info@juridis.nl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Juridis Advocaten. Demo door <a href="../../">SandeDesign</a></p>
+                <a href="../../" class="back-link">&larr; Terug naar Showcase</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
