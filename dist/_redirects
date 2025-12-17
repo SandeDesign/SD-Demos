@@ -7,6 +7,11 @@
 /demos/advocaat/*    /demos/advocaat/index.html    200
 /demos/tandarts/*    /demos/tandarts/index.html    200
 /demos/bouwbedrijf/*    /demos/bouwbedrijf/index.html    200
+/demos/schoonheid/*    /demos/schoonheid/index.html    200
+/demos/makelaar/*    /demos/makelaar/index.html    200
+/demos/fotograaf/*    /demos/fotograaf/index.html    200
+/demos/accountant/*    /demos/accountant/index.html    200
+/demos/bloemist/*    /demos/bloemist/index.html    200
 
 # Main page
 /*    /index.html   200

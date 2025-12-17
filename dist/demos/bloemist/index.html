@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloem & Blad - Artisanale Bloemisterij</title>
+    <meta name="description" content="Bloem & Blad - Handgemaakte boeketten en bloemarrangementen. Van bruiloften tot rouwwerk, met liefde samengesteld.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --primary-light: #a78bfa;
+            --sage: #84cc16;
+            --blush: #fdf4ff;
+            --cream: #fefce8;
+            --dark: #1e1b4b;
+            --gray: #64748b;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: var(--dark);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--blush) 0%, var(--cream) 50%, var(--white) 100%);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding-right: 2rem;
+        }
+
+        .hero-tagline {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            color: var(--primary);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 400;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--dark);
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 200px 200px 30px 30px;
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.15);
+        }
+
+        .hero-badge {
+            position: absolute;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-badge.left {
+            bottom: 20%;
+            left: -30px;
+        }
+
+        .hero-badge.right {
+            top: 15%;
+            right: -20px;
+        }
+
+        .hero-badge-icon {
+            font-size: 1.5rem;
+        }
+
+        .hero-badge span {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            color: var(--primary);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            position: relative;
+            margin-bottom: 1.5rem;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30, 27, 75, 0.8) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .product-overlay .btn {
+            font-size: 0.85rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-card .price {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--blush);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .about-images img {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .about-images img:first-child {
+            grid-column: span 2;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .about-images img:not(:first-child) {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2.5rem, 4vw, 3rem);
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-signature {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--primary);
+            margin-top: 2rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        .testimonials .section-header h2 {
+            color: white;
+        }
+
+        .testimonials .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(2.5rem, 4vw, 3rem);
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .contact-info > p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.25rem;
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.1);
+        }
+
+        .contact-item h4 {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(124, 58, 237, 0.1);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 4rem 2rem 2rem;
+            color: white;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+            font-weight: 400;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.875rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-light);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--primary-light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-badge {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">Bloem <span>&</span> Blad</a>
+        <ul class="nav-links">
+            <li><a href="#collectie">Collectie</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#over-ons">Over Ons</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Bestellen</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <p class="hero-tagline">Artisanale Bloemisterij</p>
+                    <h1>Bloemen Met <span>Liefde</span> Samengesteld</h1>
+                    <p>Bij Bloem & Blad creëren wij unieke boeketten en arrangementen voor elk moment. Van seizoensbloemen tot exotische creaties, altijd met oog voor detail.</p>
+                    <div class="hero-buttons">
+                        <a href="#collectie" class="btn btn-primary">Bekijk Collectie</a>
+                        <a href="#contact" class="btn btn-secondary">Contact</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&h=700&fit=crop" alt="Bloemen arrangement">
+                    <div class="hero-badge left">
+                        <span class="hero-badge-icon">&#127801;</span>
+                        <span>Dagelijks vers</span>
+                    </div>
+                    <div class="hero-badge right">
+                        <span class="hero-badge-icon">&#128151;</span>
+                        <span>Met liefde gemaakt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="collectie">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Onze Collectie</span>
+                <h2>Favoriete Boeketten</h2>
+                <p>Handgemaakte arrangementen voor elke gelegenheid.</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=400&h=400&fit=crop" alt="Romantisch boeket">
+                        <div class="product-overlay">
+                            <a href="#" class="btn btn-primary">Bestellen</a>
+                        </div>
+                    </div>
+                    <h3>Romantisch</h3>
+                    <span class="price">Vanaf €45</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=400&h=400&fit=crop" alt="Veld boeket">
+                        <div class="product-overlay">
+                            <a href="#" class="btn btn-primary">Bestellen</a>
+                        </div>
+                    </div>
+                    <h3>Veldbloemen</h3>
+                    <span class="price">Vanaf €35</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1522057384400-681b421cfebc?w=400&h=400&fit=crop" alt="Luxe boeket">
+                        <div class="product-overlay">
+                            <a href="#" class="btn btn-primary">Bestellen</a>
+                        </div>
+                    </div>
+                    <h3>Luxe Collectie</h3>
+                    <span class="price">Vanaf €75</span>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=400&h=400&fit=crop" alt="Seizoen boeket">
+                        <div class="product-overlay">
+                            <a href="#" class="btn btn-primary">Bestellen</a>
+                        </div>
+                    </div>
+                    <h3>Seizoensboeket</h3>
+                    <span class="price">Vanaf €40</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Onze Services</span>
+                <h2>Wat Wij Doen</h2>
+                <p>Van dagelijkse boeketten tot complete bruiloftsdecoraties.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">&#128141;</div>
+                    <h3>Bruiloften</h3>
+                    <p>Complete bloemen styling voor uw droomdag. Van bruidsboeket tot tafelstukken.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#127968;</div>
+                    <h3>Abonnementen</h3>
+                    <p>Wekelijks of tweewekelijks verse bloemen voor thuis of op kantoor.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">&#127881;</div>
+                    <h3>Evenementen</h3>
+                    <p>Florale decoraties voor feesten, openingen en zakelijke events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="over-ons">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop" alt="Winkel">
+                    <img src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=400&h=300&fit=crop" alt="Bloemist aan het werk">
+                    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=300&fit=crop" alt="Bloemen detail">
+                </div>
+                <div class="about-content">
+                    <h2>Met Passie voor Bloemen</h2>
+                    <p>Al meer dan 20 jaar is Bloem & Blad de plek waar creativiteit en vakmanschap samenkomen. Onze winkel in het hart van de stad is een oase van kleuren en geuren.</p>
+                    <p>Wij werken uitsluitend met de mooiste seizoensbloemen, rechtstreeks van lokale kwekers en de beste veilingen. Elk boeket wordt met zorg en liefde samengesteld.</p>
+                    <p class="about-signature">— Eva & Thomas, eigenaars</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=400&h=400&fit=crop" alt="Gallery 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=400&h=400&fit=crop" alt="Gallery 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=400&h=400&fit=crop" alt="Gallery 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop" alt="Gallery 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=400&h=400&fit=crop" alt="Gallery 5">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Reviews</span>
+                <h2>Wat Klanten Zeggen</h2>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"De bloemen voor onze bruiloft waren adembenemend mooi. Eva heeft precies begrepen wat wij voor ogen hadden en overtroffen. Iedereen was onder de indruk!"</p>
+                <span class="testimonial-author">Marie & Jan - Bruiloft 2024</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Kom Langs of Bestel</h2>
+                    <p>Bezoek onze winkel voor persoonlijk advies of bestel online voor bezorging in de regio.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">&#128205;</div>
+                            <div>
+                                <h4>Winkel</h4>
+                                <p>Bloemstraat 15, Amsterdam</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">&#128222;</div>
+                            <div>
+                                <h4>Telefoon</h4>
+                                <p>020 - 222 3344</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">&#128337;</div>
+                            <div>
+                                <h4>Openingstijden</h4>
+                                <p>Ma - Za: 09:00 - 18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <h3>Bestel of Vraag Advies</h3>
+                    <div class="form-group">
+                        <label>Naam</label>
+                        <input type="text" placeholder="Uw naam">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefoon</label>
+                        <input type="tel" placeholder="Uw telefoonnummer">
+                    </div>
+                    <div class="form-group">
+                        <label>Gelegenheid</label>
+                        <select>
+                            <option>Selecteer gelegenheid</option>
+                            <option>Verjaardag</option>
+                            <option>Bruiloft</option>
+                            <option>Rouwwerk</option>
+                            <option>Zakelijk</option>
+                            <option>Geen speciale reden</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bericht</label>
+                        <textarea rows="4" placeholder="Beschrijf uw wensen"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verstuur</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Bloem & Blad</h3>
+                    <p>Artisanale bloemisterij in Amsterdam. Met liefde samengestelde boeketten sinds 2004.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Collectie</h4>
+                    <ul>
+                        <li><a href="#">Boeketten</a></li>
+                        <li><a href="#">Planten</a></li>
+                        <li><a href="#">Droogbloemen</a></li>
+                        <li><a href="#">Accessoires</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Bruiloften</a></li>
+                        <li><a href="#">Abonnementen</a></li>
+                        <li><a href="#">Evenementen</a></li>
+                        <li><a href="#">Workshops</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Bloemstraat 15</a></li>
+                        <li><a href="#">Amsterdam</a></li>
+                        <li><a href="tel:0202223344">020 - 222 3344</a></li>
+                        <li><a href="mailto:hallo@bloemenblad.nl">hallo@bloemenblad.nl</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bloem & Blad. Demo door <a href="../../">SandeDesign</a></p>
+                <a href="../../" class="back-link">&larr; Terug naar Showcase</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
