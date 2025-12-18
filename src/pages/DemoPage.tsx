@@ -29,15 +29,16 @@ const DemoContent = () => {
 };
 
 const DemoPage = () => {
-  const { demoId } = useParams<{ demoId: string }>();
+  const { demoId, styleId } = useParams<{ demoId: string; styleId: string }>();
   const demo = getDemoById(demoId || 'kapper');
 
   useEffect(() => {
     if (demo) {
-      document.title = `${demo.name} | ${demo.tagline}`;
+      const styleText = styleId === 'style-2' ? ' - Stijl 2' : ' - Stijl 1';
+      document.title = `${demo.name}${styleText} | ${demo.tagline}`;
     }
     window.scrollTo(0, 0);
-  }, [demo]);
+  }, [demo, styleId]);
 
   if (!demo) {
     return (
@@ -47,8 +48,16 @@ const DemoPage = () => {
     );
   }
 
+  if (!styleId || (styleId !== 'style-1' && styleId !== 'style-2')) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Ongeldige stijl</p>
+      </div>
+    );
+  }
+
   return (
-    <DemoProvider demoId={demoId || 'kapper'}>
+    <DemoProvider demoId={demoId || 'kapper'} styleId={styleId}>
       <DemoContent />
     </DemoProvider>
   );

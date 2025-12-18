@@ -3,15 +3,16 @@ import { DemoConfig, demos } from '../config/demos';
 
 interface DemoContextType {
   demo: DemoConfig;
+  styleId: string;
 }
 
 const DemoContext = createContext<DemoContextType | undefined>(undefined);
 
-export const DemoProvider: React.FC<{ demoId: string; children: ReactNode }> = ({ demoId, children }) => {
+export const DemoProvider: React.FC<{ demoId: string; styleId: string; children: ReactNode }> = ({ demoId, styleId, children }) => {
   const demo = demos.find(d => d.id === demoId) || demos[0];
 
   return (
-    <DemoContext.Provider value={{ demo }}>
+    <DemoContext.Provider value={{ demo, styleId }}>
       {children}
     </DemoContext.Provider>
   );
