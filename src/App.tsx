@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage';
+import StyleSelection from './pages/StyleSelection';
 import DemoPage from './pages/DemoPage';
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/demo/:demoId" element={<DemoPage />} />
+        <Route path="/demo/:demoId" element={<StyleSelection />} />
+        <Route path="/demo/:demoId/:styleId" element={<DemoPage />} />
       </Routes>
     </BrowserRouter>
   );
