@@ -1,0 +1,648 @@
+export interface DemoConfig {
+  id: string;
+  name: string;
+  tagline: string;
+  description: string;
+  heroTitle: string;
+  heroHighlight: string[];
+  heroSubtitle: string;
+  heroImage: string;
+  ctaText: string;
+  ctaSecondary: string;
+  primaryColor: string;
+  primaryColorHover: string;
+  primaryColorLight: string;
+  icon: string;
+  navLinks: { label: string; href: string }[];
+  services: {
+    title: string;
+    price: number;
+    description: string;
+    duration: string;
+  }[];
+  about: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+    features: string[];
+  };
+  testimonials: {
+    name: string;
+    role: string;
+    text: string;
+    rating: number;
+  }[];
+  contact: {
+    address: string;
+    phone: string;
+    email: string;
+    hours: { day: string; hours: string }[];
+  };
+}
+
+export const demos: DemoConfig[] = [
+  {
+    id: 'kapper',
+    name: 'Nova Barber',
+    tagline: 'Waar Vakmanschap Precisie Ontmoet',
+    description: 'Premium barbershop voor de moderne man',
+    heroTitle: 'Waar',
+    heroHighlight: ['Vakmanschap', 'Precisie'],
+    heroSubtitle: 'Scherpe fades. Soepele service. Klassiek barbieren opnieuw gedefinieerd.',
+    heroImage: 'https://images.pexels.com/photos/1813272/pexels-photo-1813272.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    ctaText: 'Nu Boeken',
+    ctaSecondary: 'Onze Diensten',
+    primaryColor: '#d97706',
+    primaryColorHover: '#b45309',
+    primaryColorLight: '#fef3c7',
+    icon: '✂️',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Diensten', href: '#services' },
+      { label: 'Gallerij', href: '#gallery' },
+      { label: 'Recensies', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Klassieke Knipbeurt', price: 35, description: 'Onze signature knipbeurt inclusief consult, wassen en styling.', duration: '45 min' },
+      { title: 'Skin Fade', price: 45, description: 'Precisie fade techniek met naadloze overgangen en strakke lijnen.', duration: '45 min' },
+      { title: 'Baard Styling', price: 30, description: 'Vorm en definieer je baard voor een scherpe look.', duration: '30 min' },
+      { title: 'Hot Towel Scheerbeurt', price: 40, description: 'Klassieke scheerbeurt met open mes en warme handdoek.', duration: '40 min' },
+      { title: 'Vader & Zoon', price: 60, description: 'Speciaal pakket voor vader en zoon knippen.', duration: '60 min' },
+      { title: 'Haar & Baard Combo', price: 65, description: 'Compleet verzorgingspakket met knipbeurt en baard trimmen.', duration: '60 min' },
+    ],
+    about: {
+      title: 'Over Nova Barber',
+      subtitle: 'Vakmanschap sinds 2015',
+      description: 'Bij Nova Barber combineren we traditioneel vakmanschap met moderne technieken. Onze ervaren barbers zorgen voor de perfecte look.',
+      image: 'https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=800',
+      features: ['Ervaren barbers', 'Premium producten', 'Ontspannen sfeer', 'Online boeken'],
+    },
+    testimonials: [
+      { name: 'Thomas de Vries', role: 'Vaste klant', text: 'Beste barber in de stad! Altijd een perfect resultaat.', rating: 5 },
+      { name: 'Mark Jansen', role: 'Vaste klant', text: 'Geweldige sfeer en vakmanschap. Aanrader!', rating: 5 },
+      { name: 'Kevin Bakker', role: 'Nieuwe klant', text: 'Eindelijk een barber die begrijpt wat ik wil.', rating: 5 },
+    ],
+    contact: {
+      address: 'Hoofdstraat 123, Amsterdam',
+      phone: '020-1234567',
+      email: 'info@novabarber.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '09:00 - 20:00' },
+        { day: 'Zaterdag', hours: '09:00 - 18:00' },
+        { day: 'Zondag', hours: 'Gesloten' },
+      ],
+    },
+  },
+  {
+    id: 'restaurant',
+    name: 'Gusto Restaurant',
+    tagline: 'Culinaire Perfectie',
+    description: 'Fine dining met passie voor kwaliteit',
+    heroTitle: 'Ontdek',
+    heroHighlight: ['Culinaire', 'Perfectie'],
+    heroSubtitle: 'Verfijnde gerechten bereid met de beste seizoensingrediënten.',
+    heroImage: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920',
+    ctaText: 'Reserveren',
+    ctaSecondary: 'Ons Menu',
+    primaryColor: '#dc2626',
+    primaryColorHover: '#b91c1c',
+    primaryColorLight: '#fee2e2',
+    icon: '🍽️',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Menu', href: '#services' },
+      { label: 'Sfeer', href: '#gallery' },
+      { label: 'Recensies', href: '#testimonials' },
+      { label: 'Reserveren', href: '#contact' },
+    ],
+    services: [
+      { title: 'Lunch Menu', price: 35, description: 'Drie-gangen lunch met seizoensingrediënten.', duration: '90 min' },
+      { title: 'Diner Menu', price: 65, description: 'Vijf-gangen diner met bijpassende wijnen.', duration: '2.5 uur' },
+      { title: 'Chef\'s Table', price: 95, description: 'Exclusieve ervaring aan de chef\'s table.', duration: '3 uur' },
+      { title: 'High Tea', price: 45, description: 'Traditionele high tea met huisgemaakte lekkernijen.', duration: '2 uur' },
+      { title: 'Wijnproeverij', price: 55, description: 'Proef 6 premium wijnen met hapjes.', duration: '2 uur' },
+      { title: 'Privé Dining', price: 150, description: 'Exclusief diner voor uw gezelschap.', duration: '3+ uur' },
+    ],
+    about: {
+      title: 'Over Gusto',
+      subtitle: 'Passie voor eten sinds 2010',
+      description: 'Bij Gusto draait alles om de perfecte combinatie van smaak, presentatie en ambiance.',
+      image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800',
+      features: ['Verse ingrediënten', 'Award-winning chef', 'Uitgebreide wijnkaart', 'Romantische sfeer'],
+    },
+    testimonials: [
+      { name: 'Sophie van Dam', role: 'Foodblogger', text: 'De beste fine dining ervaring in Nederland!', rating: 5 },
+      { name: 'Peter Hendriks', role: 'Vaste gast', text: 'Elke keer weer een culinaire reis.', rating: 5 },
+      { name: 'Anna Smit', role: 'Eerste bezoek', text: 'Onvergetelijke avond, zeker terugkomen!', rating: 5 },
+    ],
+    contact: {
+      address: 'Keizersgracht 456, Amsterdam',
+      phone: '020-7654321',
+      email: 'reserveren@gusto.nl',
+      hours: [
+        { day: 'Dinsdag - Zaterdag', hours: '12:00 - 22:00' },
+        { day: 'Zondag', hours: '12:00 - 20:00' },
+        { day: 'Maandag', hours: 'Gesloten' },
+      ],
+    },
+  },
+  {
+    id: 'fitness',
+    name: 'FitForce Gym',
+    tagline: 'Kracht. Discipline. Resultaat.',
+    description: 'Moderne sportschool voor serieuze atleten',
+    heroTitle: 'Bereik Je',
+    heroHighlight: ['Ultieme', 'Potentieel'],
+    heroSubtitle: 'State-of-the-art apparatuur en expert coaching voor maximale resultaten.',
+    heroImage: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920',
+    ctaText: 'Start Nu',
+    ctaSecondary: 'Bekijk Abonnementen',
+    primaryColor: '#16a34a',
+    primaryColorHover: '#15803d',
+    primaryColorLight: '#dcfce7',
+    icon: '💪',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Abonnementen', href: '#services' },
+      { label: 'Faciliteiten', href: '#gallery' },
+      { label: 'Succesverhalen', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Basis Abonnement', price: 30, description: 'Toegang tot alle apparatuur en groepslessen.', duration: 'Per maand' },
+      { title: 'Premium Abonnement', price: 50, description: 'Inclusief personal training en sauna.', duration: 'Per maand' },
+      { title: 'Personal Training', price: 60, description: 'Één-op-één sessie met gecertificeerde trainer.', duration: '60 min' },
+      { title: 'Groepslessen', price: 15, description: 'Spinning, yoga, HIIT en meer.', duration: '45-60 min' },
+      { title: 'Voedingsadvies', price: 75, description: 'Persoonlijk voedingsplan op maat.', duration: 'Consult' },
+      { title: 'Bootcamp', price: 25, description: 'Intensieve outdoor training sessie.', duration: '60 min' },
+    ],
+    about: {
+      title: 'Over FitForce',
+      subtitle: 'Jouw fitness partner sinds 2018',
+      description: 'FitForce is meer dan een sportschool - het is een community van gemotiveerde mensen die hun grenzen verleggen.',
+      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=800',
+      features: ['24/7 open', 'Moderne apparatuur', 'Expert trainers', 'Gratis parkeren'],
+    },
+    testimonials: [
+      { name: 'Rick van Dijk', role: '15kg afgevallen', text: 'FitForce heeft mijn leven veranderd!', rating: 5 },
+      { name: 'Lisa Mulder', role: 'Marathon loper', text: 'De beste trainers en faciliteiten.', rating: 5 },
+      { name: 'Tim Visser', role: 'Bodybuilder', text: 'Alles wat je nodig hebt onder één dak.', rating: 5 },
+    ],
+    contact: {
+      address: 'Sportlaan 89, Rotterdam',
+      phone: '010-9876543',
+      email: 'info@fitforce.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '06:00 - 23:00' },
+        { day: 'Weekend', hours: '08:00 - 20:00' },
+        { day: 'Feestdagen', hours: '10:00 - 18:00' },
+      ],
+    },
+  },
+  {
+    id: 'advocaat',
+    name: 'Juridis Advocaten',
+    tagline: 'Recht Met Overtuiging',
+    description: 'Deskundig juridisch advies voor particulieren en bedrijven',
+    heroTitle: 'Juridische',
+    heroHighlight: ['Expertise', 'Integriteit'],
+    heroSubtitle: 'Toegewijd aan het beschermen van uw rechten met deskundigheid en toewijding.',
+    heroImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1920',
+    ctaText: 'Gratis Consult',
+    ctaSecondary: 'Onze Expertise',
+    primaryColor: '#4f46e5',
+    primaryColorHover: '#4338ca',
+    primaryColorLight: '#e0e7ff',
+    icon: '⚖️',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Expertise', href: '#services' },
+      { label: 'Team', href: '#gallery' },
+      { label: 'Referenties', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Arbeidsrecht', price: 150, description: 'Advies over arbeidscontracten, ontslag en conflicten.', duration: 'Per uur' },
+      { title: 'Ondernemingsrecht', price: 175, description: 'Juridische ondersteuning voor uw bedrijf.', duration: 'Per uur' },
+      { title: 'Familierecht', price: 150, description: 'Echtscheiding, voogdij en alimentatie zaken.', duration: 'Per uur' },
+      { title: 'Vastgoedrecht', price: 165, description: 'Koop, verkoop en huurcontracten.', duration: 'Per uur' },
+      { title: 'Strafrecht', price: 200, description: 'Verdediging in strafrechtelijke procedures.', duration: 'Per uur' },
+      { title: 'Gratis Intake', price: 0, description: 'Kennismakingsgesprek om uw zaak te bespreken.', duration: '30 min' },
+    ],
+    about: {
+      title: 'Over Juridis',
+      subtitle: '25 jaar juridische excellentie',
+      description: 'Juridis Advocaten staat bekend om persoonlijke aandacht en scherpe juridische analyses.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800',
+      features: ['Ervaren team', 'Transparante tarieven', 'Persoonlijke aanpak', 'Snelle reactie'],
+    },
+    testimonials: [
+      { name: 'Bedrijf XYZ B.V.', role: 'Ondernemingsrecht', text: 'Uitstekende begeleiding bij onze overname.', rating: 5 },
+      { name: 'Familie Jansen', role: 'Familierecht', text: 'Professioneel en empathisch in moeilijke tijden.', rating: 5 },
+      { name: 'Jan Peters', role: 'Arbeidsrecht', text: 'Dankzij Juridis een eerlijke ontslagvergoeding.', rating: 5 },
+    ],
+    contact: {
+      address: 'Advocatenweg 1, Den Haag',
+      phone: '070-1234567',
+      email: 'info@juridis.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '08:30 - 17:30' },
+        { day: 'Weekend', hours: 'Op afspraak' },
+        { day: 'Noodgevallen', hours: '24/7 bereikbaar' },
+      ],
+    },
+  },
+  {
+    id: 'tandarts',
+    name: 'DentaCare',
+    tagline: 'Uw Glimlach, Onze Zorg',
+    description: 'Moderne tandheelkunde met een persoonlijke touch',
+    heroTitle: 'Voor Een',
+    heroHighlight: ['Stralende', 'Glimlach'],
+    heroSubtitle: 'Hoogwaardige tandheelkundige zorg in een ontspannen omgeving.',
+    heroImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920',
+    ctaText: 'Afspraak Maken',
+    ctaSecondary: 'Behandelingen',
+    primaryColor: '#0891b2',
+    primaryColorHover: '#0e7490',
+    primaryColorLight: '#cffafe',
+    icon: '🦷',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Behandelingen', href: '#services' },
+      { label: 'Praktijk', href: '#gallery' },
+      { label: 'Patiënten', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Controle & Reiniging', price: 75, description: 'Periodieke controle en professionele gebitsreiniging.', duration: '30 min' },
+      { title: 'Vullingen', price: 95, description: 'Tandvullingen in diverse materialen.', duration: '45 min' },
+      { title: 'Wortelkanaal', price: 350, description: 'Wortelkanaalbehandeling met garantie.', duration: '90 min' },
+      { title: 'Tanden Bleken', price: 250, description: 'Professioneel tanden bleken voor een wittere glimlach.', duration: '60 min' },
+      { title: 'Kronen & Bruggen', price: 650, description: 'Op maat gemaakte kronen en bruggen.', duration: 'Meerdere sessies' },
+      { title: 'Implantaten', price: 1500, description: 'Duurzame tandimplantaten.', duration: 'Behandeltraject' },
+    ],
+    about: {
+      title: 'Over DentaCare',
+      subtitle: 'Angstvrije tandheelkunde',
+      description: 'Bij DentaCare staat uw comfort voorop. Onze moderne praktijk biedt zorg op het hoogste niveau.',
+      image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800',
+      features: ['Pijnvrije behandelingen', 'Moderne apparatuur', 'Avondspraken mogelijk', 'Alle verzekeringen'],
+    },
+    testimonials: [
+      { name: 'Emma de Groot', role: 'Patiënt', text: 'Eindelijk een tandarts waar ik niet bang voor ben!', rating: 5 },
+      { name: 'Robert Klein', role: 'Patiënt', text: 'Professioneel team en prachtige praktijk.', rating: 5 },
+      { name: 'Linda Vos', role: 'Patiënt', text: 'Mijn tanden zijn nog nooit zo mooi geweest.', rating: 5 },
+    ],
+    contact: {
+      address: 'Gezondheidsplein 15, Utrecht',
+      phone: '030-2468135',
+      email: 'info@dentacare.nl',
+      hours: [
+        { day: 'Maandag - Donderdag', hours: '08:00 - 20:00' },
+        { day: 'Vrijdag', hours: '08:00 - 17:00' },
+        { day: 'Spoed', hours: 'Dezelfde dag mogelijk' },
+      ],
+    },
+  },
+  {
+    id: 'bouwbedrijf',
+    name: 'BuildPro Bouw',
+    tagline: 'Bouwen Aan Uw Toekomst',
+    description: 'Betrouwbaar bouwbedrijf voor al uw projecten',
+    heroTitle: 'Kwaliteit',
+    heroHighlight: ['Vakmanschap', 'Betrouwbaar'],
+    heroSubtitle: 'Van renovatie tot nieuwbouw - wij realiseren uw droomproject.',
+    heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920',
+    ctaText: 'Gratis Offerte',
+    ctaSecondary: 'Onze Projecten',
+    primaryColor: '#ea580c',
+    primaryColorHover: '#c2410c',
+    primaryColorLight: '#ffedd5',
+    icon: '🏗️',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Diensten', href: '#services' },
+      { label: 'Projecten', href: '#gallery' },
+      { label: 'Referenties', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Nieuwbouw', price: 0, description: 'Complete nieuwbouwprojecten van A tot Z.', duration: 'Op maat' },
+      { title: 'Renovatie', price: 0, description: 'Renovatie en verbouwing van bestaande panden.', duration: 'Op maat' },
+      { title: 'Aanbouw', price: 0, description: 'Uitbreiding van uw woning of bedrijfspand.', duration: '6-12 weken' },
+      { title: 'Dakwerken', price: 0, description: 'Dakrenovatie, isolatie en onderhoud.', duration: '1-4 weken' },
+      { title: 'Badkamer & Keuken', price: 0, description: 'Complete badkamer en keuken renovaties.', duration: '2-4 weken' },
+      { title: 'Onderhoud', price: 0, description: 'Periodiek onderhoud en reparaties.', duration: 'Op afroep' },
+    ],
+    about: {
+      title: 'Over BuildPro',
+      subtitle: '30 jaar bouwervaring',
+      description: 'BuildPro staat voor kwaliteit, betrouwbaarheid en vakmanschap. Wij bouwen met passie.',
+      image: 'https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=800',
+      features: ['Vaste prijsafspraken', 'Gecertificeerd', 'Garantie op werk', '30 jaar ervaring'],
+    },
+    testimonials: [
+      { name: 'Familie Pieterse', role: 'Nieuwbouw woning', text: 'Ons droomhuis perfect opgeleverd!', rating: 5 },
+      { name: 'Bakkerij Smit', role: 'Bedrijfsrenovatie', text: 'Professioneel en binnen budget.', rating: 5 },
+      { name: 'Henk & Marie', role: 'Aanbouw', text: 'Vakkundig werk en fijne communicatie.', rating: 5 },
+    ],
+    contact: {
+      address: 'Industrieweg 45, Eindhoven',
+      phone: '040-1357924',
+      email: 'info@buildpro.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '07:00 - 17:00' },
+        { day: 'Zaterdag', hours: 'Op afspraak' },
+        { day: 'Noodgevallen', hours: 'Altijd bereikbaar' },
+      ],
+    },
+  },
+  {
+    id: 'schoonheid',
+    name: 'Bliss Beauty',
+    tagline: 'Ontspan & Straal',
+    description: 'Luxe schoonheidssalon en spa',
+    heroTitle: 'Ontdek',
+    heroHighlight: ['Innerlijke', 'Schoonheid'],
+    heroSubtitle: 'Luxe behandelingen voor complete ontspanning en verzorging.',
+    heroImage: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920',
+    ctaText: 'Boek Nu',
+    ctaSecondary: 'Behandelingen',
+    primaryColor: '#db2777',
+    primaryColorHover: '#be185d',
+    primaryColorLight: '#fce7f3',
+    icon: '💅',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Behandelingen', href: '#services' },
+      { label: 'Salon', href: '#gallery' },
+      { label: 'Reviews', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Gezichtsbehandeling', price: 85, description: 'Luxe gezichtsbehandeling met premium producten.', duration: '60 min' },
+      { title: 'Manicure Deluxe', price: 45, description: 'Complete manicure met gellak.', duration: '45 min' },
+      { title: 'Pedicure Spa', price: 55, description: 'Verwennende pedicure met voetmassage.', duration: '60 min' },
+      { title: 'Massage', price: 75, description: 'Ontspannende lichaamsmassage.', duration: '60 min' },
+      { title: 'Wenkbrauw Styling', price: 35, description: 'Harsen, verven en perfect vormgeven.', duration: '30 min' },
+      { title: 'Wellness Pakket', price: 150, description: 'Combinatie van behandelingen voor ultieme ontspanning.', duration: '2.5 uur' },
+    ],
+    about: {
+      title: 'Over Bliss Beauty',
+      subtitle: 'Waar schoonheid begint',
+      description: 'Bliss Beauty is uw oase van rust. Wij geloven dat iedereen het verdient om te stralen.',
+      image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800',
+      features: ['Luxe producten', 'Ervaren stylisten', 'Rustgevende sfeer', 'Online boeken'],
+    },
+    testimonials: [
+      { name: 'Julia Verhoeven', role: 'Vaste klant', text: 'De beste salon! Ik voel me altijd geweldig.', rating: 5 },
+      { name: 'Maria Santos', role: 'Bruid', text: 'Perfect verzorgd voor mijn bruiloft!', rating: 5 },
+      { name: 'Anne de Wit', role: 'Wellness pakket', text: 'Pure verwennerij, een must-have ervaring.', rating: 5 },
+    ],
+    contact: {
+      address: 'Modestraat 78, Amsterdam',
+      phone: '020-8765432',
+      email: 'info@blissbeauty.nl',
+      hours: [
+        { day: 'Dinsdag - Vrijdag', hours: '09:00 - 21:00' },
+        { day: 'Zaterdag', hours: '09:00 - 18:00' },
+        { day: 'Zondag & Maandag', hours: 'Gesloten' },
+      ],
+    },
+  },
+  {
+    id: 'makelaar',
+    name: 'Horizon Makelaardij',
+    tagline: 'Uw Droomwoning Begint Hier',
+    description: 'Persoonlijke begeleiding bij aan- en verkoop',
+    heroTitle: 'Vind Uw',
+    heroHighlight: ['Perfecte', 'Thuis'],
+    heroSubtitle: 'Deskundig advies en persoonlijke begeleiding bij elke stap.',
+    heroImage: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920',
+    ctaText: 'Gratis Waardebepaling',
+    ctaSecondary: 'Woningaanbod',
+    primaryColor: '#0ea5e9',
+    primaryColorHover: '#0284c7',
+    primaryColorLight: '#e0f2fe',
+    icon: '🏠',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Diensten', href: '#services' },
+      { label: 'Aanbod', href: '#gallery' },
+      { label: 'Reviews', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Verkoop Begeleiding', price: 0, description: 'Complete begeleiding bij verkoop van uw woning.', duration: 'Tot verkoop' },
+      { title: 'Aankoop Begeleiding', price: 0, description: 'Deskundig advies bij het kopen van een woning.', duration: 'Tot aankoop' },
+      { title: 'Waardebepaling', price: 0, description: 'Gratis en vrijblijvende waardebepaling.', duration: '1 uur' },
+      { title: 'Taxatie', price: 450, description: 'Officiële taxatie door gecertificeerd taxateur.', duration: '1-2 dagen' },
+      { title: 'Verhuur Beheer', price: 0, description: 'Volledig beheer van uw verhuurpand.', duration: 'Doorlopend' },
+      { title: 'Styling Advies', price: 195, description: 'Professioneel advies voor optimale presentatie.', duration: '2 uur' },
+    ],
+    about: {
+      title: 'Over Horizon',
+      subtitle: 'Lokale expertise, persoonlijke service',
+      description: 'Horizon Makelaardij kent de markt als geen ander en biedt persoonlijke begeleiding.',
+      image: 'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=800',
+      features: ['NVM lid', 'Lokale kennis', 'Transparante tarieven', 'Snel resultaat'],
+    },
+    testimonials: [
+      { name: 'Familie Bosman', role: 'Verkocht', text: 'Binnen 2 weken verkocht boven vraagprijs!', rating: 5 },
+      { name: 'Sandra & Tom', role: 'Gekocht', text: 'Ons droomhuis gevonden dankzij Horizon.', rating: 5 },
+      { name: 'Johan de Vries', role: 'Verkocht', text: 'Professioneel en persoonlijk. Aanrader!', rating: 5 },
+    ],
+    contact: {
+      address: 'Woningplein 12, Haarlem',
+      phone: '023-5678901',
+      email: 'info@horizonmakelaardij.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '09:00 - 18:00' },
+        { day: 'Zaterdag', hours: '10:00 - 15:00' },
+        { day: 'Bezichtigingen', hours: 'Ook \'s avonds' },
+      ],
+    },
+  },
+  {
+    id: 'fotograaf',
+    name: 'Studio Lens',
+    tagline: 'Momenten Vastgelegd',
+    description: 'Professionele fotografie voor elk moment',
+    heroTitle: 'Creatieve',
+    heroHighlight: ['Fotografie', 'Kunst'],
+    heroSubtitle: 'Tijdloze beelden die uw verhaal vertellen.',
+    heroImage: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=1920',
+    ctaText: 'Boek Sessie',
+    ctaSecondary: 'Portfolio',
+    primaryColor: '#171717',
+    primaryColorHover: '#262626',
+    primaryColorLight: '#f5f5f5',
+    icon: '📷',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Mij', href: '#about' },
+      { label: 'Diensten', href: '#services' },
+      { label: 'Portfolio', href: '#gallery' },
+      { label: 'Reviews', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Portretfotografie', price: 195, description: 'Professionele portretfoto\'s in studio of op locatie.', duration: '1.5 uur' },
+      { title: 'Bruiloftsfotografie', price: 1500, description: 'Complete fotografische begeleiding van uw dag.', duration: 'Hele dag' },
+      { title: 'Bedrijfsfotografie', price: 350, description: 'Professionele foto\'s voor uw bedrijf.', duration: '2-3 uur' },
+      { title: 'Eventfotografie', price: 450, description: 'Vastleggen van uw evenement.', duration: '3-4 uur' },
+      { title: 'Productfotografie', price: 75, description: 'Hoogwaardige productfoto\'s.', duration: 'Per product' },
+      { title: 'Familie Shoot', price: 250, description: 'Mooie familiefoto\'s op locatie.', duration: '1.5 uur' },
+    ],
+    about: {
+      title: 'Over Studio Lens',
+      subtitle: 'Passie voor het beeld',
+      description: 'Als fotograaf leg ik de essentie van elk moment vast. Elk beeld vertelt een verhaal.',
+      image: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800',
+      features: ['10+ jaar ervaring', 'Professionele apparatuur', 'Snelle levering', 'Creatieve aanpak'],
+    },
+    testimonials: [
+      { name: 'Bruidspaar van Leeuwen', role: 'Bruiloft', text: 'Onze trouwfoto\'s zijn adembenemend!', rating: 5 },
+      { name: 'Tech Startup BV', role: 'Bedrijf', text: 'Perfecte teamfoto\'s voor onze website.', rating: 5 },
+      { name: 'Familie Koster', role: 'Familie shoot', text: 'Prachtige herinneringen voor altijd vastgelegd.', rating: 5 },
+    ],
+    contact: {
+      address: 'Atelier 23, Leiden',
+      phone: '071-4567890',
+      email: 'info@studiolens.nl',
+      hours: [
+        { day: 'Op afspraak', hours: 'Flexibele tijden' },
+        { day: 'Studio sessies', hours: 'Ma-Za beschikbaar' },
+        { day: 'Bruiloften', hours: 'Weekenden' },
+      ],
+    },
+  },
+  {
+    id: 'accountant',
+    name: 'Fiscaal Plus',
+    tagline: 'Uw Financiële Partner',
+    description: 'Betrouwbaar accountantskantoor voor ondernemers',
+    heroTitle: 'Financieel',
+    heroHighlight: ['Inzicht', 'Controle'],
+    heroSubtitle: 'Deskundig advies voor een gezonde financiële toekomst.',
+    heroImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1920',
+    ctaText: 'Gratis Kennismaking',
+    ctaSecondary: 'Onze Diensten',
+    primaryColor: '#059669',
+    primaryColorHover: '#047857',
+    primaryColorLight: '#d1fae5',
+    icon: '📊',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Diensten', href: '#services' },
+      { label: 'Team', href: '#gallery' },
+      { label: 'Reviews', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Jaarrekening', price: 0, description: 'Opstellen van uw jaarrekening.', duration: 'Jaarlijks' },
+      { title: 'Belastingaangifte', price: 0, description: 'IB, VPB en BTW aangiftes.', duration: 'Per aangifte' },
+      { title: 'Salarisadministratie', price: 0, description: 'Complete loonadministratie.', duration: 'Maandelijks' },
+      { title: 'Advies & Begeleiding', price: 125, description: 'Financieel en fiscaal advies.', duration: 'Per uur' },
+      { title: 'Startende Ondernemer', price: 0, description: 'Speciaal pakket voor starters.', duration: 'Pakket' },
+      { title: 'Administratie', price: 0, description: 'Volledige financiële administratie.', duration: 'Maandelijks' },
+    ],
+    about: {
+      title: 'Over Fiscaal Plus',
+      subtitle: '20 jaar financiële expertise',
+      description: 'Fiscaal Plus is uw partner voor alle financiële en fiscale vraagstukken.',
+      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800',
+      features: ['Gecertificeerd', 'Persoonlijke aanpak', 'Digitaal werken', 'Vaste prijzen'],
+    },
+    testimonials: [
+      { name: 'Webshop Trends', role: 'MKB klant', text: 'Eindelijk overzicht in mijn financiën!', rating: 5 },
+      { name: 'Restaurant De Smaak', role: 'Horeca klant', text: 'Betrouwbaar en altijd bereikbaar.', rating: 5 },
+      { name: 'Freelancer Lisa', role: 'ZZP klant', text: 'Perfect voor startende ondernemers.', rating: 5 },
+    ],
+    contact: {
+      address: 'Kantorenpark 56, Amersfoort',
+      phone: '033-2468024',
+      email: 'info@fiscaalplus.nl',
+      hours: [
+        { day: 'Maandag - Vrijdag', hours: '08:30 - 17:30' },
+        { day: 'Avondafspraken', hours: 'Op aanvraag' },
+        { day: 'Aangifteperiode', hours: 'Uitgebreid bereikbaar' },
+      ],
+    },
+  },
+  {
+    id: 'bloemist',
+    name: 'Blooming Bloemen',
+    tagline: 'Bloemen Met Liefde',
+    description: 'Creatieve bloemist voor elke gelegenheid',
+    heroTitle: 'Kleur Je',
+    heroHighlight: ['Leven', 'Mooi'],
+    heroSubtitle: 'Handgemaakte boeketten en bloemstukken met passie samengesteld.',
+    heroImage: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=1920',
+    ctaText: 'Bestel Nu',
+    ctaSecondary: 'Ons Assortiment',
+    primaryColor: '#d97706',
+    primaryColorHover: '#b45309',
+    primaryColorLight: '#fef3c7',
+    icon: '🌸',
+    navLinks: [
+      { label: 'Home', href: '#home' },
+      { label: 'Over Ons', href: '#about' },
+      { label: 'Assortiment', href: '#services' },
+      { label: 'Creaties', href: '#gallery' },
+      { label: 'Reviews', href: '#testimonials' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    services: [
+      { title: 'Seizoensboeket', price: 35, description: 'Prachtig boeket met seizoensbloemen.', duration: 'Dagelijks vers' },
+      { title: 'Luxe Arrangement', price: 75, description: 'Exclusief bloemstuk voor speciale momenten.', duration: 'Op bestelling' },
+      { title: 'Bruidswerk', price: 0, description: 'Complete bloemen voor uw bruiloft.', duration: 'Op maat' },
+      { title: 'Rouwwerk', price: 0, description: 'Respectvolle bloemstukken.', duration: 'Snelle levering' },
+      { title: 'Planten', price: 25, description: 'Kamerplanten en verzorging.', duration: 'Groot assortiment' },
+      { title: 'Abonnement', price: 45, description: 'Wekelijks verse bloemen.', duration: 'Per week' },
+    ],
+    about: {
+      title: 'Over Blooming',
+      subtitle: 'Met liefde voor bloemen',
+      description: 'Bij Blooming werken we alleen met de mooiste seizoensbloemen voor unieke creaties.',
+      image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?auto=format&fit=crop&w=800',
+      features: ['Dagelijks vers', 'Bezorging mogelijk', 'Duurzame keuzes', 'Persoonlijk advies'],
+    },
+    testimonials: [
+      { name: 'Bruidspaar de Jong', role: 'Bruiloft', text: 'De bloemen waren adembenemend mooi!', rating: 5 },
+      { name: 'Hotel Grand', role: 'Zakelijk', text: 'Betrouwbare partner voor onze lobby bloemen.', rating: 5 },
+      { name: 'Marieke Visser', role: 'Abonnement', text: 'Elke week een verrassing, heerlijk!', rating: 5 },
+    ],
+    contact: {
+      address: 'Bloemenmarkt 8, Groningen',
+      phone: '050-1234567',
+      email: 'info@bloomingbloemen.nl',
+      hours: [
+        { day: 'Maandag - Zaterdag', hours: '09:00 - 18:00' },
+        { day: 'Zondag', hours: '11:00 - 16:00' },
+        { day: 'Bezorging', hours: 'Dagelijks mogelijk' },
+      ],
+    },
+  },
+];
+
+export const getDemoById = (id: string): DemoConfig | undefined => {
+  return demos.find(demo => demo.id === id);
+};
+
+export const getDemoByPath = (path: string): DemoConfig | undefined => {
+  const id = path.replace(/^\/demo\//, '').replace(/\/$/, '');
+  return getDemoById(id);
+};

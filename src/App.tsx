@@ -1,51 +1,40 @@
 import React, { useEffect } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Gallery from './components/Gallery';
-import Testimonials from './components/Testimonials';
-import Location from './components/Location';
-import Footer from './components/Footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Homepage from './pages/Homepage';
+import DemoPage from './pages/DemoPage';
 
 function App() {
   useEffect(() => {
-    // Update page title
-    document.title = 'BarberX | Where Craft Meets Precision';
-    
     // Add smooth scrolling for all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    const handleClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement;
+      const href = target.getAttribute('href');
+      if (href?.startsWith('#')) {
         e.preventDefault();
-        const href = this.getAttribute('href');
-        if (href) {
-          document.querySelector(href)?.scrollIntoView({
-            behavior: 'smooth'
-          });
-        }
-      });
+        document.querySelector(href)?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    };
+
+    document.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).matches('a[href^="#"]')) {
+        handleClick(e);
+      }
     });
-    
+
     return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', () => {});
-      });
+      document.removeEventListener('click', handleClick);
     };
   }, []);
 
   return (
-    <div className="font-sans text-gray-900 antialiased">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Gallery />
-        <Testimonials />
-        <Location />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/demo/:demoId" element={<DemoPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

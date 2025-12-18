@@ -1,100 +1,57 @@
 import React from 'react';
-import { Scissors, Instagram, Facebook, Twitter } from 'lucide-react';
-
-const footerLinks = [
-  {
-    title: 'Snelle Links',
-    links: [
-      { name: 'Home', url: '#home' },
-      { name: 'Over Ons', url: '#about' },
-      { name: 'Diensten', url: '#services' },
-      { name: 'Gallerij', url: '#gallery' },
-      { name: 'Recensies', url: '#testimonials' },
-      { name: 'Contact', url: '#contact' }
-    ]
-  },
-  {
-    title: 'Diensten',
-    links: [
-      { name: 'Klassieke Knipbeurt', url: '#services' },
-      { name: 'Skin Fade', url: '#services' },
-      { name: 'Baard Styling', url: '#services' },
-      { name: 'Hot Towel Scheerbeurt', url: '#services' },
-      { name: 'Vader & Zoon', url: '#services' },
-      { name: 'Haar & Baard Combo', url: '#services' }
-    ]
-  },
-  {
-    title: 'Juridisch',
-    links: [
-      { name: 'Privacybeleid', url: '#' },
-      { name: 'Algemene Voorwaarden', url: '#' },
-      { name: 'Cookiebeleid', url: '#' },
-      { name: 'FAQ', url: '#' }
-    ]
-  }
-];
-
-const socialLinks = [
-  { name: 'Instagram', icon: <Instagram size={20} />, url: 'https://instagram.com' },
-  { name: 'Facebook', icon: <Facebook size={20} />, url: 'https://facebook.com' },
-  { name: 'Twitter', icon: <Twitter size={20} />, url: 'https://twitter.com' }
-];
+import { useDemo } from '../context/DemoContext';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
+  const { demo } = useDemo();
+
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-6">
+    <footer className="bg-gray-900 text-white py-12">
       <div className="container">
-        <div className="grid grid-cols-1 gap-8 pb-8 border-b border-gray-800 md:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
+        <div className="grid gap-8 md:grid-cols-4">
+          <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <Scissors size={32} className="text-amber-500 mr-2" />
-              <span className="text-2xl font-bold font-serif">Nova Barber</span>
+              <span className="text-3xl mr-2">{demo.icon}</span>
+              <span className="text-2xl font-bold">{demo.name}</span>
             </div>
-            <p className="mb-6 text-gray-400 max-w-sm">
-              Nova Barber is meer dan een barbershop – het is een premium verzorgingservaring waar traditie innovatie ontmoet. Onze meester-barbiers combineren klassieke technieken met moderne stijlen.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.url}
-                  className="flex items-center justify-center w-10 h-10 text-gray-400 transition-colors duration-300 bg-gray-800 rounded-full hover:bg-amber-600 hover:text-white"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Volg ons op ${social.name}`}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+            <p className="text-gray-400 mb-4">{demo.description}</p>
+            <p className="text-gray-400">{demo.tagline}</p>
           </div>
-          
-          {footerLinks.map((column, columnIndex) => (
-            <div key={columnIndex}>
-              <h3 className="mb-4 text-lg font-bold">{column.title}</h3>
-              <ul className="space-y-2">
-                {column.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <a 
-                      href={link.url}
-                      className="text-gray-400 transition-colors duration-300 hover:text-amber-500"
-                    >
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+
+          <div>
+            <h4 className="text-lg font-bold mb-4">Contact</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>{demo.contact.address}</li>
+              <li>{demo.contact.phone}</li>
+              <li>{demo.contact.email}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold mb-4">Links</h4>
+            <ul className="space-y-2">
+              {demo.navLinks.slice(0, 4).map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
+                  ← Alle Demo's
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
-        
-        <div className="pt-8 text-center text-gray-400">
-          <p>© {currentYear} Nova Barber. Alle rechten voorbehouden.</p>
-          <p className="mt-2 text-sm">
-            Met precisie ontworpen voor de moderne gentleman.
+
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p className="text-gray-400">
+            &copy; {new Date().getFullYear()} {demo.name}. Alle rechten voorbehouden.
+          </p>
+          <p className="text-gray-500 text-sm mt-2">
+            Demo website door <span style={{ color: demo.primaryColor }}>SandeDesign</span>
           </p>
         </div>
       </div>
