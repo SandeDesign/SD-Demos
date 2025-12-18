@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { getDemoById } from '../config/demos';
 
 const StyleSelection = () => {
   const { demoId } = useParams<{ demoId: string }>();
-  const navigate = useNavigate();
   const demo = getDemoById(demoId || '');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   if (!demo) {
     return (
@@ -26,67 +24,9 @@ const StyleSelection = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0b1a]">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0b1a]/80 backdrop-blur-lg border-b border-purple-500/20">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-              <img
-                src="https://fl-group.org/wp-content/uploads/2025/03/New-Logo-SandeDesign-150x150.png"
-                alt="SandeDesign"
-                className="w-10 h-10"
-              />
-              <div>
-                <div className="text-white font-bold text-lg">SandeDesign</div>
-                <div className="text-purple-400 text-xs">Digital Excellence</div>
-              </div>
-            </Link>
-
-            <button
-              onClick={() => navigate(-1)}
-              className="flex items-center text-gray-400 hover:text-white transition-colors"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-              </svg>
-              Terug
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="pt-24 pb-16">
+      {/* Main Content - Only Style Cards */}
+      <main className="py-16">
         <div className="container mx-auto px-4">
-          {/* Demo Info */}
-          <div className="text-center mb-12">
-            <div
-              className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mx-auto mb-6 shadow-xl shadow-purple-500/30"
-              style={{ backgroundColor: demo.primaryColorLight }}
-            >
-              {demo.icon}
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              {demo.name}
-            </h1>
-            <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-              {demo.tagline}
-            </p>
-            <p className="text-gray-400 max-w-md mx-auto">
-              {demo.description}
-            </p>
-          </div>
-
-          {/* Style Selection Title */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Kies uw <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Stijl</span>
-            </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
-              Elke stijl heeft een unieke uitstraling en vormgeving. Klik op een stijl om de volledige demo te bekijken.
-            </p>
-          </div>
-
           {/* Style Cards */}
           <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {/* Style 1 */}
@@ -214,62 +154,14 @@ const StyleSelection = () => {
         </div>
       </main>
 
-      {/* Mobile FAB Menu */}
-      <button
-        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        className="md:hidden fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full shadow-lg shadow-purple-500/50 flex items-center justify-center text-white hover:shadow-xl hover:shadow-purple-500/70 transition-all"
-      >
-        {mobileMenuOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        )}
-      </button>
-
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
-          <div className="fixed bottom-24 right-6 bg-[#1a1b2e] rounded-2xl shadow-2xl border border-purple-500/30 p-4 space-y-2 min-w-[200px]" onClick={(e) => e.stopPropagation()}>
-            <a
-              href="https://sandedesign.nl"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-purple-500/10 rounded-lg transition-colors"
-            >
-              🏠 Home
-            </a>
-            <Link
-              to="/"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-purple-500/10 rounded-lg transition-colors"
-            >
-              👁️ Alle Demo's
-            </Link>
-            <a
-              href="https://sandedesign.nl/#contact"
-              className="block px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg text-center hover:shadow-lg transition-all"
-            >
-              📧 Contact
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* Footer */}
-      <footer className="py-8 bg-[#0a0b1a] border-t border-purple-500/20 mt-16">
+      {/* Footer - Only Small Logo */}
+      <footer className="py-6 bg-[#0a0b1a]">
         <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center mb-4">
-            <img
-              src="https://fl-group.org/wp-content/uploads/2025/03/New-Logo-SandeDesign-150x150.png"
-              alt="SandeDesign"
-              className="w-8 h-8 mr-2"
-            />
-            <span className="text-lg font-bold text-white">SandeDesign</span>
-          </div>
-          <p className="text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} SandeDesign. Alle rechten voorbehouden.
-          </p>
+          <img
+            src="https://fl-group.org/wp-content/uploads/2025/03/New-Logo-SandeDesign-150x150.png"
+            alt="SandeDesign"
+            className="w-12 h-12 mx-auto opacity-50"
+          />
         </div>
       </footer>
     </div>
