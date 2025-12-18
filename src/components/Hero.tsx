@@ -12,15 +12,89 @@ const Hero = () => {
   }, []);
 
   const isStyle2 = styleId === 'style-2';
-  const overlayOpacity = isStyle2 ? 'bg-opacity-80' : 'bg-opacity-60';
-  const buttonRounding = isStyle2 ? 'rounded-lg' : 'rounded-xl';
+
+  // Style 2: Split-screen modern layout
+  if (isStyle2) {
+    return (
+      <section id="home" className="relative min-h-screen bg-black text-white">
+        <div className="container mx-auto px-4 py-0">
+          <div className="flex flex-col lg:flex-row min-h-screen items-center">
+            {/* Left Content Panel */}
+            <div className="flex-1 flex items-center py-20 lg:py-0">
+              <div
+                className={`transition-all duration-1000 transform ${
+                  isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+                }`}
+              >
+                {/* Small tag/badge */}
+                <div className="inline-block px-4 py-2 mb-6 rounded-full bg-white/5 border border-white/10">
+                  <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: demo.primaryColor }}>
+                    {demo.icon} {demo.name}
+                  </span>
+                </div>
+
+                <h1 className="mb-6 font-bold text-5xl md:text-6xl lg:text-7xl leading-tight">
+                  {demo.heroTitle}{' '}
+                  <span className="block mt-2" style={{ color: demo.primaryColor }}>
+                    {demo.heroHighlight.join(' ')}
+                  </span>
+                </h1>
+
+                <p className="max-w-lg mb-10 text-xl text-gray-300 leading-relaxed">
+                  {demo.heroSubtitle}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="#contact"
+                    className="px-8 py-4 rounded-full font-semibold text-white text-lg transition-all hover:scale-105 shadow-xl inline-block text-center"
+                    style={{ backgroundColor: demo.primaryColor }}
+                  >
+                    {demo.ctaText} →
+                  </a>
+                  <a
+                    href="#services"
+                    className="px-8 py-4 rounded-full font-semibold border-2 border-white/20 text-white transition-all hover:bg-white/10 inline-block text-center text-lg"
+                  >
+                    {demo.ctaSecondary}
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Image Panel */}
+            <div className="flex-1 relative min-h-[400px] lg:min-h-screen w-full">
+              <div
+                className={`absolute inset-0 lg:relative transition-all duration-1000 transform ${
+                  isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'
+                }`}
+              >
+                <div className="relative h-[400px] lg:h-screen w-full overflow-hidden rounded-2xl lg:rounded-none">
+                  <img
+                    src={demo.heroImage}
+                    alt={demo.name}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-black/50 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Style 1: Traditional centered hero with overlay
+  const overlayOpacity = 'bg-opacity-60';
+  const buttonRounding = 'rounded-xl';
 
   return (
     <section
       id="home"
       className="relative flex items-center justify-center min-h-screen text-white bg-gray-900"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, ${isStyle2 ? '0.85' : '0.7'}), rgba(0, 0, 0, ${isStyle2 ? '0.85' : '0.7'})), url("${demo.heroImage}")`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("${demo.heroImage}")`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -33,37 +107,32 @@ const Hero = () => {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
           }`}
         >
-          <h1 className={`mb-4 font-bold ${isStyle2 ? 'text-5xl md:text-6xl lg:text-7xl' : 'text-4xl md:text-5xl lg:text-6xl'}`}>
+          <h1 className="mb-4 font-bold text-4xl md:text-5xl lg:text-6xl">
             {demo.heroTitle}{' '}
             {demo.heroHighlight.map((word, index) => (
               <span
                 key={index}
                 style={{ color: demo.primaryColor }}
-                className={isStyle2 ? 'drop-shadow-[0_0_15px_rgba(147,51,234,0.5)]' : ''}
               >
                 {word}{index < demo.heroHighlight.length - 1 ? ' ' : ''}
               </span>
             ))}
             {' '}Ontmoet
           </h1>
-          <p className={`max-w-2xl mx-auto mb-8 md:text-xl ${isStyle2 ? 'text-xl text-gray-200' : 'text-lg text-gray-300'}`}>
+          <p className="max-w-2xl mx-auto mb-8 text-lg md:text-xl text-gray-300">
             {demo.heroSubtitle}
           </p>
           <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
             <a
               href="#contact"
-              className={`px-8 py-3 ${buttonRounding} font-semibold text-white transition-all hover:opacity-90 ${isStyle2 ? 'shadow-xl shadow-purple-500/30 transform hover:scale-105' : ''}`}
+              className={`px-8 py-3 ${buttonRounding} font-semibold text-white transition-all hover:opacity-90`}
               style={{ backgroundColor: demo.primaryColor }}
             >
               {demo.ctaText}
             </a>
             <a
               href="#services"
-              className={`px-8 py-3 ${buttonRounding} font-semibold border-2 transition-all ${
-                isStyle2
-                  ? 'border-purple-400 text-purple-300 hover:bg-purple-400 hover:text-white'
-                  : 'border-white text-white hover:bg-white hover:text-gray-900'
-              }`}
+              className={`px-8 py-3 ${buttonRounding} font-semibold border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-all`}
             >
               {demo.ctaSecondary}
             </a>
@@ -74,7 +143,7 @@ const Hero = () => {
       <div className="absolute bottom-0 left-0 right-0 flex justify-center p-8">
         <a
           href="#about"
-          className={`flex items-center justify-center w-10 h-10 text-white animate-bounce ${buttonRounding} ${isStyle2 ? 'shadow-lg shadow-purple-500/50' : ''}`}
+          className={`flex items-center justify-center w-10 h-10 text-white animate-bounce ${buttonRounding}`}
           style={{ backgroundColor: demo.primaryColor }}
           aria-label="Scroll naar beneden"
         >
