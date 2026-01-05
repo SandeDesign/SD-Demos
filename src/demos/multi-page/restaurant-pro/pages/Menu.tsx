@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Filter, Award, Leaf, ShoppingCart } from 'lucide-react';
 import { Layout } from '../components/Layout';
 import { restaurantProConfig } from '../config';
-import { MenuItem } from '../types';
+import { MenuItem as MenuItemType } from '../types';
 
 export const Menu = () => {
   const config = restaurantProConfig;
@@ -11,7 +11,7 @@ export const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showVegetarianOnly, setShowVegetarianOnly] = useState(false);
 
-  const filterItems = (items: MenuItem[]) => {
+  const filterItems = (items: MenuItemType[]) => {
     return items.filter(item => !showVegetarianOnly || item.vegetarian);
   };
 
@@ -97,7 +97,7 @@ export const Menu = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       {filteredItems.map((item) => (
-                        <MenuItem key={item.id} item={item} baseUrl={baseUrl} />
+                        <MenuItemCard key={item.id} item={item} baseUrl={baseUrl} />
                       ))}
                     </div>
                   </div>
@@ -130,7 +130,7 @@ export const Menu = () => {
                       ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {filteredItems.map((item) => (
-                            <MenuItem key={item.id} item={item} baseUrl={baseUrl} />
+                            <MenuItemCard key={item.id} item={item} baseUrl={baseUrl} />
                           ))}
                         </div>
                       )}
@@ -166,11 +166,11 @@ export const Menu = () => {
 
 // Menu Item Component
 interface MenuItemProps {
-  item: MenuItem;
+  item: MenuItemType;
   baseUrl: string;
 }
 
-const MenuItem = ({ item, baseUrl }: MenuItemProps) => {
+const MenuItemCard = ({ item, baseUrl }: MenuItemProps) => {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition transform hover:-translate-y-1">
       <div className="relative h-56">
