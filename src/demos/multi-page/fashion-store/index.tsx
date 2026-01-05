@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ShoppingCart, Heart, Star, Filter, X, Check } from 'lucide-react';
+import { BackButton } from '../../../components/BackButton';
 import { fashionStoreConfig } from './config';
 import { Product, CartItem } from './types';
 
@@ -29,6 +30,7 @@ export const FashionStoreDemo = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <BackButton />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b">
         <div className="container mx-auto px-4 py-4">
