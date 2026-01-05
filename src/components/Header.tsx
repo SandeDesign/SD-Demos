@@ -54,12 +54,6 @@ const Header = () => {
             </button>
 
             <nav className="hidden lg:flex items-center space-x-6">
-              <Link
-                to="/"
-                className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                ← Demo's
-              </Link>
               {demo.navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -86,13 +80,6 @@ const Header = () => {
             }`}
           >
             <div className="p-6 space-y-4">
-              <Link
-                to="/"
-                className="block py-2 text-gray-600 hover:text-gray-900 font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                ← Alle Demo's
-              </Link>
               {demo.navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -148,14 +135,6 @@ const Header = () => {
         </button>
 
         <nav className="hidden lg:flex items-center space-x-8">
-          <Link
-            to="/"
-            className={`font-medium transition-all duration-300 ${
-              isScrolled ? 'text-gray-300 hover:text-white' : 'text-white hover:opacity-80'
-            }`}
-          >
-            ← Alle Demo's
-          </Link>
           {demo.navLinks.map((link) => (
             <a
               key={link.href}
@@ -182,13 +161,6 @@ const Header = () => {
           }`}
         >
           <div className="container py-4 space-y-4">
-            <Link
-              to="/"
-              className="block py-2 text-gray-300 hover:text-white"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              ← Alle Demo's
-            </Link>
             {demo.navLinks.map((link) => (
               <a
                 key={link.href}
