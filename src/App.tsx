@@ -9,6 +9,7 @@ import {
   HotelBookingDemo,
   FitnessPortalDemo,
   BlogMagazineDemo,
+  SaasDashboardDemo,
 } from './demos/multi-page';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/demo/hotel-booking" element={<HotelBookingDemo />} />
         <Route path="/demo/fitness-portal" element={<FitnessPortalDemo />} />
         <Route path="/demo/blog-magazine" element={<BlogMagazineDemo />} />
+        <Route path="/demo/saas-dashboard" element={<SaasDashboardDemo />} />
 
         {/* Single-page demos (existing) */}
         <Route path="/demo/:demoId" element={<StyleSelection />} />

@@ -4,6 +4,7 @@ export { FashionStoreDemo, fashionStoreConfig } from './fashion-store';
 export { HotelBookingDemo, hotelBookingConfig } from './hotel-booking';
 export { FitnessPortalDemo, fitnessPortalConfig } from './fitness-portal';
 export { BlogMagazineDemo, blogMagazineConfig } from './blog-magazine';
+export { SaasDashboardDemo, saasDashboardConfig } from './saas-dashboard';
 
 // Multi-page demo configurations
 export const multiPageDemos = [
@@ -51,5 +52,14 @@ export const multiPageDemos = [
     icon: '📰',
     color: 'from-blue-600 to-purple-600',
     path: '/demo/blog-magazine',
+  },
+  {
+    id: 'saas-dashboard',
+    title: 'SaaS Dashboard Platform',
+    description: 'Moderne analytics dashboard met team management, API keys en billing',
+    features: ['Real-time Analytics', 'Team Management', 'API Key Beheer', 'Billing System'],
+    icon: '📊',
+    color: 'from-indigo-600 to-purple-600',
+    path: '/demo/saas-dashboard',
   },
 ];
