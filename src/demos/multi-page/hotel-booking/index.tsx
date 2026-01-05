@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Calendar, Users, Star, Check, MapPin, Wifi, Coffee, Dumbbell } from 'lucide-react';
-import { BackButton } from '../../../components/BackButton';
 import { hotelBookingConfig } from './config';
 
 export const HotelBookingDemo = () => {
@@ -23,7 +22,6 @@ export const HotelBookingDemo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
-      <BackButton />
       {/* Header */}
       <header className="bg-gradient-to-r from-amber-900 to-amber-800 text-white py-6">
         <div className="container mx-auto px-4">
