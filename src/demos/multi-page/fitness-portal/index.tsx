@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Calendar, Clock, Users, Star, Check, X, TrendingUp, Award } from 'lucide-react';
+import { BackButton } from '../../../components/BackButton';
 import { fitnessPortalConfig } from './config';
 
 export const FitnessPortalDemo = () => {
@@ -20,6 +21,7 @@ export const FitnessPortalDemo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-white">
+      <BackButton />
       {/* Header */}
       <header className="bg-gradient-to-r from-red-600 to-red-500 text-white py-8 shadow-lg">
         <div className="container mx-auto px-4">

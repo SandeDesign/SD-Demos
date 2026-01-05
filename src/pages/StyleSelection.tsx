@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getDemoById } from '../config/demos';
+import { BackButton } from '../components/BackButton';
 
 const StyleSelection = () => {
   const { demoId } = useParams<{ demoId: string }>();
@@ -24,6 +25,7 @@ const StyleSelection = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0b1a]">
+      <BackButton />
       {/* Main Content - Only Style Cards */}
       <main className="py-16">
         <div className="container mx-auto px-4">

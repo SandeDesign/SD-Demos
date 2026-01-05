@@ -3,6 +3,7 @@ import {
   BarChart3, Users, Key, CreditCard, Settings, TrendingUp,
   Activity, Bell, Search, Plus, Copy, Check, X
 } from 'lucide-react';
+import { BackButton } from '../../../components/BackButton';
 import { saasDashboardConfig } from './config';
 
 export const SaasDashboardDemo = () => {
@@ -18,6 +19,7 @@ export const SaasDashboardDemo = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <BackButton />
       {/* Top Navigation */}
       <nav className="bg-white/10 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4">
