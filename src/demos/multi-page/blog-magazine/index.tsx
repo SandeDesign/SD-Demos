@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search, Clock, Eye, Heart, TrendingUp, Calendar, User, Tag } from 'lucide-react';
+import { BackButton } from '../../../components/BackButton';
 import { blogMagazineConfig } from './config';
 
 export const BlogMagazineDemo = () => {
@@ -21,6 +22,7 @@ export const BlogMagazineDemo = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <BackButton />
       {/* Header */}
       <header className="bg-white border-b sticky top-0 z-40 shadow-sm">
         <div className="container mx-auto px-4 py-6">
