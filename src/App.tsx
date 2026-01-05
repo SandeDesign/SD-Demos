@@ -3,6 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import StyleSelection from './pages/StyleSelection';
 import DemoPage from './pages/DemoPage';
+import {
+  RestaurantProDemo,
+  FashionStoreDemo,
+  HotelBookingDemo,
+  FitnessPortalDemo,
+  BlogMagazineDemo,
+} from './demos/multi-page';
 
 function App() {
   useEffect(() => {
@@ -33,6 +40,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
+
+        {/* Multi-page demos */}
+        <Route path="/demo/restaurant-pro/*" element={<RestaurantProDemo />} />
+        <Route path="/demo/fashion-store" element={<FashionStoreDemo />} />
+        <Route path="/demo/hotel-booking" element={<HotelBookingDemo />} />
+        <Route path="/demo/fitness-portal" element={<FitnessPortalDemo />} />
+        <Route path="/demo/blog-magazine" element={<BlogMagazineDemo />} />
+
+        {/* Single-page demos (existing) */}
         <Route path="/demo/:demoId" element={<StyleSelection />} />
         <Route path="/demo/:demoId/:styleId" element={<DemoPage />} />
       </Routes>
