@@ -5,6 +5,9 @@ export { HotelBookingDemo, hotelBookingConfig } from './hotel-booking';
 export { FitnessPortalDemo, fitnessPortalConfig } from './fitness-portal';
 export { BlogMagazineDemo, blogMagazineConfig } from './blog-magazine';
 export { SaasDashboardDemo, saasDashboardConfig } from './saas-dashboard';
+export { LearnHubDemo } from './learn-hub';
+export { TravelScapeDemo } from './travel-scape';
+export { AutoVaultDemo } from './auto-vault';
 
 // Multi-page demo configurations
 export const multiPageDemos = [
@@ -61,5 +64,32 @@ export const multiPageDemos = [
     icon: '📊',
     color: 'from-indigo-600 to-purple-600',
     path: '/demo/saas-dashboard',
+  },
+  {
+    id: 'learn-hub',
+    title: 'LearnHub - Online Leerplatform',
+    description: 'Modern e-learning platform met cursussen, voortgang tracking en certificaten',
+    features: ['Video Cursussen', 'Progress Tracking', 'Quizzes', 'Certificaten'],
+    icon: '📚',
+    color: 'from-indigo-600 to-purple-600',
+    path: '/demo/learn-hub',
+  },
+  {
+    id: 'travel-scape',
+    title: 'TravelScape - Reis Booking',
+    description: 'Uitgebreide reisplatform met bestemmingen, packages en online boeken',
+    features: ['Destination Browser', 'Package Deals', 'Travel Search', 'Booking System'],
+    icon: '✈️',
+    color: 'from-teal-600 to-cyan-600',
+    path: '/demo/travel-scape',
+  },
+  {
+    id: 'auto-vault',
+    title: 'AutoVault - Auto Dealership',
+    description: 'Premium autodealership met auto catalogus, specs vergelijken en proefritten',
+    features: ['Auto Catalogus', 'Spec Vergelijking', '360° Views', 'Proefrit Boeken'],
+    icon: '🚗',
+    color: 'from-red-600 to-red-800',
+    path: '/demo/auto-vault',
   },
 ];
