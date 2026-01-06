@@ -10,6 +10,9 @@ import {
   FitnessPortalDemo,
   BlogMagazineDemo,
   SaasDashboardDemo,
+  LearnHubDemo,
+  TravelScapeDemo,
+  AutoVaultDemo,
 } from './demos/multi-page';
 
 function App() {
@@ -49,6 +52,9 @@ function App() {
         <Route path="/demo/fitness-portal" element={<FitnessPortalDemo />} />
         <Route path="/demo/blog-magazine" element={<BlogMagazineDemo />} />
         <Route path="/demo/saas-dashboard" element={<SaasDashboardDemo />} />
+        <Route path="/demo/learn-hub" element={<LearnHubDemo />} />
+        <Route path="/demo/travel-scape" element={<TravelScapeDemo />} />
+        <Route path="/demo/auto-vault" element={<AutoVaultDemo />} />
 
         {/* Single-page demos (existing) */}
         <Route path="/demo/:demoId" element={<StyleSelection />} />
