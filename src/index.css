@@ -54,7 +54,58 @@
   .fade-in.appear {
     @apply opacity-100;
   }
-}html, body {
+}
+
+/* Preset CSS Variables */
+[data-preset="editorial"] {
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Source Serif 4', serif;
+  --section-spacing: 120px;
+  --card-radius: 0px;
+  --section-bg-alt: #fafaf8;
+}
+
+[data-preset="brutalist"] {
+  --font-heading: 'Space Mono', monospace;
+  --font-body: 'IBM Plex Mono', monospace;
+  --section-spacing: 60px;
+  --card-radius: 0px;
+  --section-bg-alt: #f0f0f0;
+}
+
+[data-preset="soft"] {
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Nunito', sans-serif;
+  --section-spacing: 100px;
+  --card-radius: 24px;
+  --section-bg-alt: #fdf4ff;
+}
+
+[data-preset="corporate"] {
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --section-spacing: 80px;
+  --card-radius: 4px;
+  --section-bg-alt: #f8fafc;
+}
+
+[data-preset="artisan"] {
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Lato', sans-serif;
+  --section-spacing: 100px;
+  --card-radius: 8px;
+  --section-bg-alt: #faf7f2;
+}
+
+[data-preset="playful"] {
+  --font-heading: 'Righteous', cursive;
+  --font-body: 'Quicksand', sans-serif;
+  --section-spacing: 80px;
+  --card-radius: 16px;
+  --section-bg-alt: #f0fdf4;
+}
+
+html, body {
   overflow-x: hidden;
   position: relative;
   overscroll-behavior-x: none;

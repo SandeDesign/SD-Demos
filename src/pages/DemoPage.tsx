@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { DemoProvider } from '../context/DemoContext';
 import { getDemoById } from '../config/demos';
+import { usePreset } from '../hooks/usePreset';
 import { BackButton } from '../components/BackButton';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -13,8 +14,26 @@ import Location from '../components/Location';
 import Footer from '../components/Footer';
 
 const DemoContent = () => {
+  const preset = usePreset();
+
+  useEffect(() => {
+    const id = 'preset-fonts';
+    let link = document.getElementById(id) as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement('link');
+      link.id = id;
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    }
+    link.href = preset.googleFontsUrl;
+  }, [preset.googleFontsUrl]);
+
   return (
-    <div className="font-sans text-gray-900 antialiased">
+    <div
+      data-preset={preset.name}
+      className="antialiased"
+      style={{ fontFamily: 'var(--font-body)' }}
+    >
       <BackButton />
       <Header />
       <main>
