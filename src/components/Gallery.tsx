@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDemo } from '../context/DemoContext';
+import { usePreset } from '../hooks/usePreset';
 
 const galleryImages: Record<string, string[]> = {
   kapper: [
@@ -166,6 +167,7 @@ const galleryImages: Record<string, string[]> = {
 
 const Gallery = () => {
   const { demo } = useDemo();
+  const preset = usePreset();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -181,41 +183,105 @@ const Gallery = () => {
       },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
-  return (
-    <section id="gallery" ref={sectionRef} className="py-20 bg-white">
-      <div className="container">
-        <div className="max-w-2xl mx-auto mb-16 text-center">
-          <span
-            className="inline-block px-4 py-1 mb-4 text-sm font-semibold uppercase rounded-full"
-            style={{ backgroundColor: demo.primaryColorLight, color: demo.primaryColor }}
-          >
-            {demo.navLinks.find(l => l.href === '#gallery')?.label || 'Gallerij'}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Onze <span style={{ color: demo.primaryColor }}>Werkzaamheden</span>
-          </h2>
-          <p className="text-gray-600">
-            Bekijk een selectie van ons werk en onze sfeer.
-          </p>
-        </div>
+  const headingFont = { fontFamily: 'var(--font-heading)' };
+  const galleryLayout = preset.galleryLayout;
 
+  const cardRadiusClass = ({
+    none: 'rounded-none',
+    sm: 'rounded',
+    md: 'rounded-lg',
+    xl: 'rounded-2xl',
+    full: 'rounded-3xl',
+  } as Record<string, string>)[preset.borderRadius] || 'rounded-lg';
+
+  const SectionHeader = () => (
+    <div className="max-w-2xl mx-auto mb-16 text-center">
+      <span
+        className="inline-block px-4 py-1 mb-4 text-sm font-semibold uppercase rounded-full"
+        style={{ backgroundColor: demo.primaryColorLight, color: demo.primaryColor }}
+      >
+        {demo.navLinks.find(l => l.href === '#gallery')?.label || 'Gallerij'}
+      </span>
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900" style={headingFont}>
+        Onze <span style={{ color: demo.primaryColor }}>Werkzaamheden</span>
+      </h2>
+      <p className="text-gray-600">Bekijk een selectie van ons werk en onze sfeer.</p>
+    </div>
+  );
+
+  // --- MASONRY: CSS columns masonry layout ---
+  if (galleryLayout === 'masonry') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
+        <div className="container">
+          <SectionHeader />
+          <div className="columns-2 md:columns-3 gap-4 space-y-4">
+            {images.map((image, index) => {
+              const heights = ['h-48', 'h-64', 'h-56', 'h-72', 'h-52', 'h-60'];
+              return (
+                <div
+                  key={index}
+                  className={`break-inside-avoid overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
+                    isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <img
+                    src={image}
+                    alt={`${demo.name} - Afbeelding ${index + 1}`}
+                    className={`w-full ${heights[index % heights.length]} object-cover hover:scale-110 transition-transform duration-500`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // --- FEATURED-FIRST: First image large, rest in grid ---
+  if (galleryLayout === 'featured-first') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
+        <div className="container">
+          <SectionHeader />
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className={`overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
+                  index === 0 ? 'col-span-2 row-span-2' : ''
+                } ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <img
+                  src={image}
+                  alt={`${demo.name} - Afbeelding ${index + 1}`}
+                  className={`w-full ${index === 0 ? 'h-[400px] md:h-[500px]' : 'h-48 md:h-64'} object-cover hover:scale-110 transition-transform duration-500`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // --- UNIFORM-GRID (default): Equal sized grid cells ---
+  return (
+    <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
+      <div className="container">
+        <SectionHeader />
         <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
           {images.map((image, index) => (
             <div
               key={index}
-              className={`overflow-hidden rounded-lg transition-all duration-700 transform ${
+              className={`overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
                 isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
