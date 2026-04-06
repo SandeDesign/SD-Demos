@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import { demos } from '../config/demos';
 import { multiPageDemos } from '../demos/multi-page';
 
+const nicheLabels: Record<string, string> = {
+  kapper: 'Kapper', restaurant: 'Restaurant', fitness: 'Fitness', advocaat: 'Advocaat',
+  tandarts: 'Tandarts', bouwbedrijf: 'Bouwbedrijf', schoonheid: 'Schoonheid', makelaar: 'Makelaar',
+  fotograaf: 'Fotograaf', accountant: 'Accountant', bloemist: 'Bloemist', autogarage: 'Autogarage',
+  yoga: 'Yoga Studio', bakkerij: 'Bakkerij', dierenarts: 'Dierenarts', elektricien: 'Elektricien',
+  schilder: 'Schilder', loodgieter: 'Loodgieter', tuinman: 'Tuinman', schoonmaak: 'Schoonmaak',
+};
+
 const Homepage = () => {
   return (
     <div className="min-h-screen bg-[#0a0b1a] text-white overflow-x-hidden">
@@ -57,16 +65,16 @@ const Homepage = () => {
             </h2>
             <p className="text-gray-500">Elke demo heeft 2 compleet verschillende stijlen</p>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:overflow-visible">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-5 sm:overflow-visible">
             {demos.map((demo) => (
-              <Link key={demo.id} to={`/demo/${demo.id}`} className="flex-shrink-0 w-[160px] sm:w-auto snap-start group relative bg-[#12132a] rounded-xl overflow-hidden border border-white/5 hover:border-purple-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1">
-                <div className="relative h-24 sm:h-32 overflow-hidden">
+              <Link key={demo.id} to={`/demo/${demo.id}`} className="flex-shrink-0 w-[220px] sm:w-auto snap-start group relative bg-[#12132a] rounded-xl overflow-hidden border border-white/5 hover:border-purple-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1">
+                <div className="relative h-32 sm:h-36 overflow-hidden">
                   <img src={demo.heroImage} alt={demo.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#12132a] via-transparent to-transparent" />
                 </div>
-                <div className="p-2 sm:p-3 flex items-center gap-2">
-                  <span className="text-base sm:text-lg">{demo.icon}</span>
-                  <h3 className="font-semibold text-white text-xs sm:text-sm group-hover:text-purple-300 transition-colors truncate">{demo.name}</h3>
+                <div className="p-3 flex items-center gap-2">
+                  <span className="text-lg">{demo.icon}</span>
+                  <h3 className="font-semibold text-white text-sm group-hover:text-purple-300 transition-colors">{nicheLabels[demo.id] || demo.id} Website</h3>
                 </div>
               </Link>
             ))}
@@ -83,9 +91,9 @@ const Homepage = () => {
             </h2>
             <p className="text-gray-500">Uitgebreide websites met meerdere pagina's</p>
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:overflow-visible max-w-5xl mx-auto">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:overflow-visible max-w-5xl mx-auto">
             {multiPageDemos.map((demo) => (
-              <Link key={demo.id} to={demo.path} className={`flex-shrink-0 w-[280px] sm:w-auto snap-start group relative bg-[#12132a] rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/40 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2`}>
+              <Link key={demo.id} to={demo.path} className={`flex-shrink-0 w-[85vw] max-w-[340px] sm:w-auto sm:max-w-none snap-start group relative bg-[#12132a] rounded-2xl overflow-hidden border border-white/10 hover:border-purple-400/40 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-2`}>
                 <div className={`absolute inset-0 bg-gradient-to-br ${demo.color} opacity-15 group-hover:opacity-25 transition-opacity`} />
                 <div className="relative p-5 sm:p-6">
                   <div className="flex items-start justify-between mb-3">
