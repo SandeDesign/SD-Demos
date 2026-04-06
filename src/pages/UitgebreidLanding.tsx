@@ -237,7 +237,7 @@ const UitgebreidLanding = () => {
           <div className="flex gap-3">
             <Link to="/standaard" className="px-4 py-2 text-sm font-semibold border border-white/20 rounded-lg hover:bg-white/5 transition-all">Onepage</Link>
             <a href="https://www.sandedesign.nl/website-aanvraag/uitgebreid" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:shadow-lg transition-all">
-              Website aanvragen ⚡
+              Aanvragen ⚡
             </a>
           </div>
         </div>
