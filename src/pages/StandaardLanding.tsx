@@ -112,7 +112,7 @@ const StandaardLanding = () => {
                 <span className="text-white/60 ml-2">excl. BTW</span>
                 <p className="text-sm text-white/50 mt-2">+ €25/maand (hosting & onderhoud inbegrepen)</p>
               </div>
-              <a href="https://www.sandedesign.nl/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all">
+              <a href="https://www.sandedesign.nl/website-aanvraag/standaard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all">
                 Start aanvraag ⚡
               </a>
             </div>
@@ -155,16 +155,16 @@ const StandaardLanding = () => {
             </h2>
             <p className="text-gray-500 max-w-lg mx-auto">Elke demo heeft 2 compleet verschillende stijlen.</p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible">
             {demos.map((demo) => (
-              <Link key={demo.id} to={`/demo/${demo.id}`} className="group relative bg-[#12132a] rounded-xl overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1">
-                <div className="relative h-36 overflow-hidden">
+              <Link key={demo.id} to={`/demo/${demo.id}`} className="flex-shrink-0 w-[200px] sm:w-auto snap-start group relative bg-[#12132a] rounded-xl overflow-hidden border border-white/5 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1">
+                <div className="relative h-28 sm:h-36 overflow-hidden">
                   <img src={demo.heroImage} alt={demo.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#12132a] via-transparent to-transparent" />
                 </div>
-                <div className="p-4 flex items-center gap-2">
-                  <span className="text-xl">{demo.icon}</span>
-                  <h3 className="font-semibold text-white text-sm group-hover:text-cyan-300 transition-colors">{demo.name}</h3>
+                <div className="p-3 sm:p-4 flex items-center gap-2">
+                  <span className="text-lg sm:text-xl">{demo.icon}</span>
+                  <h3 className="font-semibold text-white text-xs sm:text-sm group-hover:text-cyan-300 transition-colors truncate">{demo.name}</h3>
                 </div>
               </Link>
             ))}
@@ -182,7 +182,7 @@ const StandaardLanding = () => {
           </div>
           <div className="flex gap-3">
             <Link to="/uitgebreid" className="px-4 py-2 text-sm font-semibold border border-white/20 rounded-lg hover:bg-white/5 transition-all">Uitgebreid</Link>
-            <a href="https://www.sandedesign.nl/contact" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:shadow-lg transition-all">
+            <a href="https://www.sandedesign.nl/website-aanvraag/standaard" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:shadow-lg transition-all">
               Contact ⚡
             </a>
           </div>
