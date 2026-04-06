@@ -25,8 +25,6 @@ const Homepage = () => {
             </div>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#onepage" className="text-sm text-gray-400 hover:text-white transition-colors">Onepage Demo's</a>
-            <a href="#multipage" className="text-sm text-gray-400 hover:text-white transition-colors">Multi-page Demo's</a>
             <Link to="/standaard" className="text-sm text-gray-400 hover:text-white transition-colors">Standaard pakket</Link>
             <Link to="/uitgebreid" className="text-sm text-gray-400 hover:text-white transition-colors">Uitgebreid pakket</Link>
           </nav>
