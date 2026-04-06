@@ -77,6 +77,35 @@ const StandaardLanding = () => {
                 Websites die{' '}
                 <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">converteren</span>
               </h1>
+
+              {/* Mobile browser preview — between heading and subtitle */}
+              <div className="lg:hidden mb-8">
+                <div className="bg-[#1a1b2e] rounded-xl border border-white/10 shadow-xl overflow-hidden cursor-pointer" onClick={() => setFullPreview(iframeSrc)}>
+                  <div className="flex items-center gap-2 px-3 py-2 border-b border-white/5">
+                    <div className="flex gap-1"><span className="w-2 h-2 rounded-full bg-red-500/60" /><span className="w-2 h-2 rounded-full bg-yellow-500/60" /><span className="w-2 h-2 rounded-full bg-green-500/60" /></div>
+                    <div className="flex-1 mx-2 px-2 py-0.5 rounded bg-white/5 text-[10px] text-gray-500 text-center">jouwbedrijf.nl</div>
+                    <span className="px-1.5 py-0.5 bg-green-500/20 text-green-400 text-[8px] font-bold rounded-full">LIVE</span>
+                  </div>
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/10' }}>
+                    <iframe
+                      key={`mobile-${iframeSrc}`}
+                      src={iframeSrc}
+                      title="Mobile Preview"
+                      className="absolute inset-0 border-0 pointer-events-none origin-top-left"
+                      style={{ width: '1440px', height: '900px', transform: 'scale(var(--preview-scale-m, 0.25))' }}
+                      loading="lazy"
+                      tabIndex={-1}
+                      ref={(el) => { if (el?.parentElement) { el.style.setProperty('--preview-scale-m', String(el.parentElement.offsetWidth / 1440)); } }}
+                    />
+                  </div>
+                </div>
+                <div className="flex items-center justify-center gap-2 mt-3">
+                  {previewDemos.slice(0, 8).map((_, i) => (
+                    <button key={i} onClick={() => setCurrentPreview(i)} className={`w-1.5 h-1.5 rounded-full transition-all ${i === currentPreview ? 'w-4 bg-cyan-400' : 'bg-white/20'}`} />
+                  ))}
+                </div>
+              </div>
+
               <p className="text-lg text-gray-400 max-w-xl mb-8 leading-relaxed">
                 Niet zomaar mooi. Gebouwd om bezoekers in klanten te veranderen — razendsnel opgeleverd.
               </p>
@@ -117,15 +146,21 @@ const StandaardLanding = () => {
                   <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] font-bold rounded-full">LIVE</span>
                 </div>
                 {/* Iframe scaled to fill entire container */}
-                <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/10' }}>
                   <iframe
                     key={iframeSrc}
                     src={iframeSrc}
                     title="Preview"
-                    className="absolute top-0 left-0 border-0 pointer-events-none"
-                    style={{ width: '250%', height: '250%', transform: 'scale(0.4)', transformOrigin: 'top left' }}
+                    className="absolute inset-0 border-0 pointer-events-none origin-top-left"
+                    style={{ width: '1440px', height: '900px', transform: 'scale(var(--preview-scale, 0.4))' }}
                     loading="lazy"
                     tabIndex={-1}
+                    ref={(el) => {
+                      if (el?.parentElement) {
+                        const s = el.parentElement.offsetWidth / 1440;
+                        el.style.setProperty('--preview-scale', String(s));
+                      }
+                    }}
                   />
                 </div>
                 {/* Click to expand overlay */}
