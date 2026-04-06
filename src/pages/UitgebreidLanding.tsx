@@ -1,10 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { multiPageDemos } from '../demos/multi-page';
 
+const previewPaths = [
+  '/demo/restaurant-pro', '/demo/fashion-store', '/demo/hotel-booking',
+  '/demo/fitness-portal', '/demo/blog-magazine', '/demo/saas-dashboard',
+];
+
 const UitgebreidLanding = () => {
+  const [currentPreview, setCurrentPreview] = useState(0);
+  const [fullPreview, setFullPreview] = useState<string | null>(null);
+
+  const nextPreview = useCallback(() => {
+    setCurrentPreview(i => (i + 1) % previewPaths.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextPreview, 6000);
+    return () => clearInterval(timer);
+  }, [nextPreview]);
+
+  const iframeSrc = previewPaths[currentPreview];
+
   return (
     <div className="min-h-screen bg-[#0a0b1a] text-white overflow-x-hidden">
+      {/* Fullscreen preview modal */}
+      {fullPreview && (
+        <div className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setFullPreview(null)}>
+          <div className="relative w-full max-w-6xl h-[85vh] bg-[#1a1b2e] rounded-2xl overflow-hidden border border-white/10" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between px-4 py-3 border-b border-white/5">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-red-500/60" />
+                <span className="w-3 h-3 rounded-full bg-yellow-500/60" />
+                <span className="w-3 h-3 rounded-full bg-green-500/60" />
+              </div>
+              <span className="text-xs text-gray-500">Preview</span>
+              <button onClick={() => setFullPreview(null)} className="text-gray-400 hover:text-white text-lg font-bold px-2">✕</button>
+            </div>
+            <iframe src={fullPreview} title="Preview" className="w-full h-full border-0" />
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0b1a]/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -29,7 +66,7 @@ const UitgebreidLanding = () => {
       {/* Hero */}
       <section className="relative py-24 lg:py-32">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-8">
                 <span className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
@@ -40,7 +77,7 @@ const UitgebreidLanding = () => {
                 <span className="bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent">platforms</span>
               </h1>
               <p className="text-lg text-gray-400 max-w-xl mb-8 leading-relaxed">
-                Meer dan een onepage nodig? Multi-page websites met bestelsystemen, reserveringen, dashboards en meer. Volledig op maat.
+                Meer dan een onepage nodig? Multi-page websites met bestelsystemen, reserveringen, dashboards en meer.
               </p>
               <div className="flex gap-10 mb-10">
                 {[
@@ -61,15 +98,14 @@ const UitgebreidLanding = () => {
                 <a href="#pakket" className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-pink-500/30 transition-all">
                   Bekijk pakketten ↓
                 </a>
-                <a href="#voorbeelden" className="px-8 py-4 border border-white/20 rounded-xl font-semibold hover:bg-white/5 transition-all flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                  Portfolio bekijken
+                <a href="#voorbeelden" className="px-8 py-4 border border-white/20 rounded-xl font-semibold hover:bg-white/5 transition-all">
+                  Voorbeelden
                 </a>
               </div>
             </div>
-            {/* Browser mockup */}
+            {/* Browser mockup — rotating, full fill */}
             <div className="relative hidden lg:block">
-              <div className="bg-[#1a1b2e] rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
+              <div className="bg-[#1a1b2e] rounded-2xl border border-white/10 shadow-2xl overflow-hidden cursor-pointer" onClick={() => setFullPreview(iframeSrc)}>
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
                   <div className="flex gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-red-500/60" />
@@ -79,17 +115,27 @@ const UitgebreidLanding = () => {
                   <div className="flex-1 mx-4 px-3 py-1 rounded bg-white/5 text-xs text-gray-500 text-center">jouwplatform.nl</div>
                   <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] font-bold rounded-full">LIVE</span>
                 </div>
-                <div className="relative h-[350px] overflow-hidden">
+                <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
                   <iframe
-                    src="/demo/restaurant-pro"
+                    key={iframeSrc}
+                    src={iframeSrc}
                     title="Preview"
-                    className="w-[1440px] h-[900px] border-0 pointer-events-none"
-                    style={{ transform: 'scale(0.38)', transformOrigin: 'top left' }}
+                    className="absolute top-0 left-0 border-0 pointer-events-none"
+                    style={{ width: '250%', height: '250%', transform: 'scale(0.4)', transformOrigin: 'top left' }}
                     loading="lazy"
                     tabIndex={-1}
                   />
                 </div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/20">
+                  <span className="bg-white/90 text-gray-900 px-4 py-2 rounded-full text-sm font-semibold shadow-xl">Klik om te vergroten</span>
+                </div>
               </div>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                {previewPaths.map((_, i) => (
+                  <button key={i} onClick={() => setCurrentPreview(i)} className={`w-2 h-2 rounded-full transition-all ${i === currentPreview ? 'w-6 bg-pink-400' : 'bg-white/20 hover:bg-white/40'}`} />
+                ))}
+              </div>
+              <p className="text-center text-xs text-gray-600 mt-2">Automatisch roulerend • klik voor volledig scherm</p>
             </div>
           </div>
         </div>
@@ -115,7 +161,6 @@ const UitgebreidLanding = () => {
                 Start maatwerk aanvraag ⚡
               </a>
             </div>
-            {/* Wat je krijgt */}
             <div className="bg-[#12132a] rounded-2xl border border-white/5 p-8">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-bold">Wat je krijgt:</h3>
@@ -123,7 +168,7 @@ const UitgebreidLanding = () => {
               </div>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 {[
-                  { icon: '📄', title: 'Multi-page', desc: 'Onbeperkt pagina\'s' },
+                  { icon: '📄', title: 'Multi-page', desc: "Onbeperkt pagina's" },
                   { icon: '📝', title: 'CMS Integratie', desc: 'Beheer je content' },
                   { icon: '📊', title: 'Analytics', desc: 'Uitgebreide statistieken' },
                   { icon: '⚙️', title: 'Custom Features', desc: 'Maatwerk functionaliteit' },
@@ -136,7 +181,7 @@ const UitgebreidLanding = () => {
                 ))}
               </div>
               <div className="space-y-3">
-                {['Onbeperkt aantal pagina\'s', 'Custom design & branding', 'Content Management Systeem', 'Gebruikers & rechten beheer', 'API integraties', 'Geavanceerde SEO optimalisatie', 'Maandelijks onderhoud & updates', 'Priority support'].map((f, i) => (
+                {["Onbeperkt aantal pagina's", 'Custom design & branding', 'Content Management Systeem', 'Gebruikers & rechten beheer', 'API integraties', 'Geavanceerde SEO optimalisatie', 'Maandelijks onderhoud & updates', 'Priority support'].map((f, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm text-gray-300">
                     <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                     <span>{f}</span>
@@ -148,14 +193,14 @@ const UitgebreidLanding = () => {
         </div>
       </section>
 
-      {/* Voorbeelden grid */}
+      {/* Voorbeelden */}
       <section id="voorbeelden" className="py-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-              Bekijk onze <span className="bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent">voorbeelden</span>
+              Laat je <span className="bg-gradient-to-r from-pink-400 to-purple-500 bg-clip-text text-transparent">inspireren</span>
             </h2>
-            <p className="text-gray-500 max-w-lg mx-auto">Uitgebreide multi-page websites. Klik om ze live te bekijken.</p>
+            <p className="text-gray-500 max-w-xl mx-auto">Dit zijn voorbeelden van wat mogelijk is. Elke website wordt volledig op maat gemaakt voor jouw situatie.</p>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:overflow-visible max-w-5xl mx-auto">
             {multiPageDemos.map((demo) => (
@@ -177,6 +222,7 @@ const UitgebreidLanding = () => {
               </Link>
             ))}
           </div>
+          <p className="text-center text-sm text-gray-600 mt-8">Elk project wordt volledig op maat gebouwd — deze demo's zijn ter inspiratie.</p>
         </div>
       </section>
 

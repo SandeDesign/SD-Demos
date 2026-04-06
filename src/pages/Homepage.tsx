@@ -63,7 +63,7 @@ const Homepage = () => {
             <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
               Standaard <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Onepage</span> Demo's
             </h2>
-            <p className="text-gray-500">Elke demo heeft 2 compleet verschillende stijlen</p>
+            <p className="text-gray-500">Impressies ter inspiratie — elke stijl is toepasbaar op elke branche</p>
           </div>
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 sm:gap-5 sm:overflow-visible">
             {demos.map((demo) => (
