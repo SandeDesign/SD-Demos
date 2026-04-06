@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Homepage from './pages/Homepage';
+import StandaardLanding from './pages/StandaardLanding';
+import UitgebreidLanding from './pages/UitgebreidLanding';
 import StyleSelection from './pages/StyleSelection';
 import DemoPage from './pages/DemoPage';
 import {
@@ -44,6 +46,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/standaard" element={<StandaardLanding />} />
+        <Route path="/uitgebreid" element={<UitgebreidLanding />} />
 
         {/* Multi-page demos */}
         <Route path="/demo/restaurant-pro/*" element={<RestaurantProDemo />} />
