@@ -115,15 +115,21 @@ const UitgebreidLanding = () => {
                   <div className="flex-1 mx-4 px-3 py-1 rounded bg-white/5 text-xs text-gray-500 text-center">jouwplatform.nl</div>
                   <span className="px-2 py-0.5 bg-green-500/20 text-green-400 text-[10px] font-bold rounded-full">LIVE</span>
                 </div>
-                <div className="relative w-full" style={{ paddingBottom: '62.5%' }}>
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/10' }}>
                   <iframe
                     key={iframeSrc}
                     src={iframeSrc}
                     title="Preview"
-                    className="absolute top-0 left-0 border-0 pointer-events-none"
-                    style={{ width: '250%', height: '250%', transform: 'scale(0.4)', transformOrigin: 'top left' }}
+                    className="absolute inset-0 border-0 pointer-events-none origin-top-left"
+                    style={{ width: '1440px', height: '900px', transform: 'scale(var(--preview-scale, 0.4))' }}
                     loading="lazy"
                     tabIndex={-1}
+                    ref={(el) => {
+                      if (el?.parentElement) {
+                        const s = el.parentElement.offsetWidth / 1440;
+                        el.style.setProperty('--preview-scale', String(s));
+                      }
+                    }}
                   />
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black/20">
