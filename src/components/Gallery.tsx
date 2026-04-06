@@ -165,105 +165,39 @@ const galleryImages: Record<string, string[]> = {
   ],
 };
 
+
 const Gallery = () => {
   const { demo } = useDemo();
   const preset = usePreset();
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-
   const images = galleryImages[demo.id] || galleryImages.kapper;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.unobserve(entry.target); } },
       { threshold: 0.1 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => { if (sectionRef.current) observer.unobserve(sectionRef.current); };
   }, []);
 
-  const headingFont = { fontFamily: 'var(--font-heading)' };
-  const galleryLayout = preset.galleryLayout;
+  const hf = { fontFamily: 'var(--font-heading)' };
+  const galleryLabel = demo.navLinks.find(l => l.href === '#gallery')?.label || 'Gallerij';
+  const anim = (i: number) => `transition-all duration-700 transform ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`;
+  const dl = (i: number) => ({ transitionDelay: `${i * 80}ms` });
 
-  const cardRadiusClass = ({
-    none: 'rounded-none',
-    sm: 'rounded',
-    md: 'rounded-lg',
-    xl: 'rounded-2xl',
-    full: 'rounded-3xl',
-  } as Record<string, string>)[preset.borderRadius] || 'rounded-lg';
-
-  const SectionHeader = () => (
-    <div className="max-w-2xl mx-auto mb-16 text-center">
-      <span
-        className="inline-block px-4 py-1 mb-4 text-sm font-semibold uppercase rounded-full"
-        style={{ backgroundColor: demo.primaryColorLight, color: demo.primaryColor }}
-      >
-        {demo.navLinks.find(l => l.href === '#gallery')?.label || 'Gallerij'}
-      </span>
-      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900" style={headingFont}>
-        Onze <span style={{ color: demo.primaryColor }}>Werkzaamheden</span>
-      </h2>
-      <p className="text-gray-600">Bekijk een selectie van ons werk en onze sfeer.</p>
-    </div>
-  );
-
-  // --- MASONRY: CSS columns masonry layout ---
-  if (galleryLayout === 'masonry') {
+  // 1. EDITORIAL: featured-first, first image 2col+2row, clean minimal
+  if (preset.name === 'editorial') {
     return (
-      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
-        <div className="container">
-          <SectionHeader />
-          <div className="columns-2 md:columns-3 gap-4 space-y-4">
-            {images.map((image, index) => {
-              const heights = ['h-48', 'h-64', 'h-56', 'h-72', 'h-52', 'h-60'];
-              return (
-                <div
-                  key={index}
-                  className={`break-inside-avoid overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
-                    isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
-                  <img
-                    src={image}
-                    alt={`${demo.name} - Afbeelding ${index + 1}`}
-                    className={`w-full ${heights[index % heights.length]} object-cover hover:scale-110 transition-transform duration-500`}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // --- FEATURED-FIRST: First image large, rest in grid ---
-  if (galleryLayout === 'featured-first') {
-    return (
-      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
-        <div className="container">
-          <SectionHeader />
-          <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
-                  index === 0 ? 'col-span-2 row-span-2' : ''
-                } ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <img
-                  src={image}
-                  alt={`${demo.name} - Afbeelding ${index + 1}`}
-                  className={`w-full ${index === 0 ? 'h-[400px] md:h-[500px]' : 'h-48 md:h-64'} object-cover hover:scale-110 transition-transform duration-500`}
-                />
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--section-bg-alt)' }}>
+        <div className="container max-w-5xl">
+          <span className="text-sm uppercase tracking-[0.3em] mb-4 block" style={{ color: demo.primaryColor }}>{galleryLabel}</span>
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-16" style={hf}>Portfolio</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden ${i === 0 ? 'col-span-2 row-span-2' : ''} ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className={`w-full ${i === 0 ? 'h-[500px]' : 'h-48 md:h-64'} object-cover hover:scale-105 transition-transform duration-700`} />
               </div>
             ))}
           </div>
@@ -272,28 +206,236 @@ const Gallery = () => {
     );
   }
 
-  // --- UNIFORM-GRID (default): Equal sized grid cells ---
-  return (
-    <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing, 80px) 0' }}>
-      <div className="container">
-        <SectionHeader />
-        <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`overflow-hidden ${cardRadiusClass} transition-all duration-700 transform ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <img
-                src={image}
-                alt={`${demo.name} - Afbeelding ${index + 1}`}
-                className="w-full h-48 md:h-64 object-cover hover:scale-110 transition-transform duration-500"
-              />
+  // 2. BRUTALIST: no gap, no radius, full-bleed grid, grayscale hover
+  if (preset.name === 'brutalist') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing) 0' }}>
+        <div className="container">
+          <div className="border-b-4 border-black pb-4 mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-black uppercase tracking-tight" style={hf}>{galleryLabel} <span style={{ color: demo.primaryColor }}>_</span></h2>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-0">
+          {images.map((img, i) => (
+            <div key={i} className={`overflow-hidden ${anim(i)} group`} style={dl(i)}>
+              <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-72 object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" />
             </div>
           ))}
         </div>
+      </section>
+    );
+  }
+
+  // 3. SOFT: rounded-3xl cards, generous gap, pastel bg, soft shadows
+  if (preset.name === 'soft') {
+    return (
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--section-bg-alt)' }}>
+        <div className="container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="inline-block px-5 py-2 mb-4 text-sm font-semibold rounded-full" style={{ backgroundColor: demo.primaryColorLight, color: demo.primaryColor }}>{galleryLabel}</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900" style={hf}>Onze Sfeer</h2>
+          </div>
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden rounded-3xl shadow-xl shadow-gray-200/50 ${anim(i)} hover:shadow-2xl transition-shadow`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover hover:scale-110 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 4. CORPORATE: clean 3-col with numbered overlay captions
+  if (preset.name === 'corporate') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing) 0' }}>
+        <div className="container">
+          <div className="max-w-3xl mb-12">
+            <span className="inline-block px-4 py-2 mb-4 rounded text-sm font-semibold border" style={{ borderColor: demo.primaryColor, color: demo.primaryColor }}>{galleryLabel}</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900" style={hf}>Ons Werk</h2>
+          </div>
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`relative overflow-hidden rounded-lg group ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-end p-4">
+                  <span className="text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">{demo.name} — {i+1}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 5. ARTISAN: CSS columns masonry, varying heights
+  if (preset.name === 'artisan') {
+    const heights = ['h-48', 'h-72', 'h-56', 'h-80', 'h-52', 'h-64'];
+    return (
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--section-bg-alt)' }}>
+        <div className="container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-sm uppercase tracking-[0.2em] mb-4 block" style={{ color: demo.primaryColor }}>✦ {galleryLabel} ✦</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900" style={hf}>Ons Ambacht</h2>
+          </div>
+          <div className="columns-2 md:columns-3 gap-4 space-y-4">
+            {images.map((img, i) => (
+              <div key={i} className={`break-inside-avoid overflow-hidden rounded-lg ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className={`w-full ${heights[i % 6]} object-cover hover:scale-110 transition-transform duration-500`} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 6. PLAYFUL: tilted polaroid cards with captions
+  if (preset.name === 'playful') {
+    const rots = ['-rotate-2', 'rotate-1', '-rotate-1', 'rotate-3', '-rotate-2', 'rotate-1'];
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing) 0' }}>
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900" style={hf}>Kijk dan! 📸</h2>
+          </div>
+          <div className="grid gap-8 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`bg-white p-3 shadow-xl ${rots[i%6]} hover:rotate-0 hover:scale-105 transition-all ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-56 object-cover" />
+                <p className="text-center text-sm text-gray-500 mt-2 font-medium">{demo.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 7. MAGAZINE: hero image + small grid, magazine cover style
+  if (preset.name === 'magazine') {
+    return (
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--section-bg-alt)' }}>
+        <div className="container">
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 uppercase tracking-tight mb-8" style={hf}>{galleryLabel}</h2>
+          <div className="grid grid-cols-3 gap-2">
+            <div className={`col-span-3 md:col-span-2 row-span-2 overflow-hidden ${anim(0)}`} style={dl(0)}>
+              <img src={images[0]} alt={`${demo.name} 1`} className="w-full h-[400px] md:h-[540px] object-cover hover:scale-105 transition-transform duration-700" />
+            </div>
+            {images.slice(1).map((img, i) => (
+              <div key={i+1} className={`overflow-hidden ${anim(i+1)}`} style={dl(i+1)}>
+                <img src={img} alt={`${demo.name} ${i+2}`} className="w-full h-48 md:h-64 object-cover hover:scale-110 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 8. RETRO: rounded cards, warm bg, double-border effect
+  if (preset.name === 'retro') {
+    return (
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: '#fdf6ec' }}>
+        <div className="container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-900" style={hf}>Gallerij</h2>
+            <div className="w-24 h-1 mx-auto mt-4 rounded-full" style={{ backgroundColor: demo.primaryColor }} />
+          </div>
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden rounded-xl border-4 border-white shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0_0_rgba(0,0,0,0.15)] transition-all ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover hover:scale-110 transition-transform duration-500" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 9. LUXE: dark bg, elegant spacing, thin borders, hover reveal
+  if (preset.name === 'luxe') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-[#0a0a0a]" style={{ padding: 'var(--section-spacing) 0' }}>
+        <div className="container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs uppercase tracking-[0.4em] mb-4 block" style={{ color: demo.primaryColor }}>{galleryLabel}</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white" style={hf}>Portfolio</h2>
+          </div>
+          <div className="grid gap-3 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden border border-white/10 group ${anim(i)}`} style={dl(i)}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 10. TECH: dark bg, glowing borders on hover, grid overlay feel
+  if (preset.name === 'tech') {
+    return (
+      <section id="gallery" ref={sectionRef} className="bg-slate-900" style={{ padding: 'var(--section-spacing) 0' }}>
+        <div className="container">
+          <div className="mb-12">
+            <span className="text-xs uppercase tracking-widest mb-2 block" style={{ color: demo.primaryColor }}>// {galleryLabel}</span>
+            <h2 className="text-3xl md:text-5xl font-bold text-white" style={hf}>Visueel_</h2>
+          </div>
+          <div className="grid gap-2 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden rounded-lg border border-slate-700 group hover:border-transparent transition-all ${anim(i)}`} style={{ ...dl(i) }}>
+                <div className="group-hover:shadow-[0_0_20px_rgba(var(--tw-shadow-color),0.3)] transition-shadow" style={{ '--tw-shadow-color': demo.primaryColor } as React.CSSProperties}>
+                  <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-500" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 11. ORGANIC: blob-shaped images, earth tones, flowing
+  if (preset.name === 'organic') {
+    const radii = ['60% 40% 30% 70% / 50% 60% 40% 50%', '40% 60% 70% 30% / 60% 40% 50% 50%', '50% 50% 40% 60% / 40% 60% 50% 50%', '30% 70% 50% 50% / 60% 40% 60% 40%', '70% 30% 60% 40% / 40% 60% 40% 60%', '50% 50% 30% 70% / 50% 50% 60% 40%'];
+    return (
+      <section id="gallery" ref={sectionRef} style={{ padding: 'var(--section-spacing) 0', backgroundColor: 'var(--section-bg-alt)' }}>
+        <div className="container">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800" style={hf}>Natuurlijk Mooi</h2>
+          </div>
+          <div className="grid gap-8 grid-cols-2 md:grid-cols-3">
+            {images.map((img, i) => (
+              <div key={i} className={`overflow-hidden hover:scale-105 transition-all ${anim(i)}`} style={{ borderRadius: radii[i % 6], ...dl(i) }}>
+                <img src={img} alt={`${demo.name} ${i+1}`} className="w-full h-48 md:h-64 object-cover" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // 12. BOLD: full-width alternating large/small, high contrast
+  return (
+    <section id="gallery" ref={sectionRef} className="bg-white" style={{ padding: 'var(--section-spacing) 0' }}>
+      <div className="container">
+        <h2 className="text-5xl md:text-8xl font-bold text-gray-900 uppercase mb-8" style={hf}>
+          <span style={{ color: demo.primaryColor }}>{galleryLabel}</span>
+        </h2>
+      </div>
+      <div className="space-y-2">
+        {images.map((img, i) => (
+          <div key={i} className={`overflow-hidden ${i % 3 === 0 ? 'w-full' : 'w-full md:w-3/4 md:ml-auto'} ${anim(i)}`} style={dl(i)}>
+            <img src={img} alt={`${demo.name} ${i+1}`} className={`w-full ${i % 3 === 0 ? 'h-64 md:h-96' : 'h-48 md:h-64'} object-cover hover:scale-105 transition-transform duration-700`} />
+          </div>
+        ))}
       </div>
     </section>
   );
