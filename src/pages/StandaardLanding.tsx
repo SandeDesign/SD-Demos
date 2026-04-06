@@ -112,7 +112,7 @@ const StandaardLanding = () => {
                 <span className="text-white/60 ml-2">excl. BTW</span>
                 <p className="text-sm text-white/50 mt-2">+ €25/maand (hosting & onderhoud inbegrepen)</p>
               </div>
-              <a href="https://www.sandedesign.nl/contact" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all">
+              <a href="https://www.sandedesign.nl/website-aanvraag/standaard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-semibold hover:shadow-xl hover:shadow-cyan-500/30 transition-all">
                 Start aanvraag ⚡
               </a>
             </div>
@@ -182,7 +182,7 @@ const StandaardLanding = () => {
           </div>
           <div className="flex gap-3">
             <Link to="/uitgebreid" className="px-4 py-2 text-sm font-semibold border border-white/20 rounded-lg hover:bg-white/5 transition-all">Uitgebreid</Link>
-            <a href="https://www.sandedesign.nl/contact" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:shadow-lg transition-all">
+            <a href="https://www.sandedesign.nl/website-aanvraag/standaard" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:shadow-lg transition-all">
               Contact ⚡
             </a>
           </div>
