@@ -105,6 +105,54 @@
   --section-bg-alt: #f0fdf4;
 }
 
+[data-preset="magazine"] {
+  --font-heading: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --section-spacing: 80px;
+  --card-radius: 2px;
+  --section-bg-alt: #f5f5f5;
+}
+
+[data-preset="retro"] {
+  --font-heading: 'Abril Fatface', serif;
+  --font-body: 'Karla', sans-serif;
+  --section-spacing: 90px;
+  --card-radius: 12px;
+  --section-bg-alt: #fef9f0;
+}
+
+[data-preset="luxe"] {
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Raleway', sans-serif;
+  --section-spacing: 100px;
+  --card-radius: 0px;
+  --section-bg-alt: #0a0a0a;
+}
+
+[data-preset="tech"] {
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Exo 2', sans-serif;
+  --section-spacing: 80px;
+  --card-radius: 8px;
+  --section-bg-alt: #0f172a;
+}
+
+[data-preset="organic"] {
+  --font-heading: 'Josefin Sans', sans-serif;
+  --font-body: 'Libre Franklin', sans-serif;
+  --section-spacing: 90px;
+  --card-radius: 20px;
+  --section-bg-alt: #f5f0eb;
+}
+
+[data-preset="bold"] {
+  --font-heading: 'Anton', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+  --section-spacing: 70px;
+  --card-radius: 0px;
+  --section-bg-alt: #fafafa;
+}
+
 html, body {
   overflow-x: hidden;
   position: relative;
