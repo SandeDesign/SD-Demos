@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { demos } from '../config/demos';
+import SiteHeader from '../components/SiteHeader';
 
 const previewDemos = demos.slice(0, 8).flatMap(d => [
   { id: d.id, style: 'style-1', label: `${d.icon} ${d.name}` },
@@ -43,26 +44,15 @@ const StandaardLanding = () => {
         </div>
       )}
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0b1a]/80 backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src="https://fl-group.org/wp-content/uploads/2025/03/New-Logo-SandeDesign-150x150.png" alt="SandeDesign" className="w-10 h-10" />
-            <div>
-              <span className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SandeDesign</span>
-              <span className="block text-[10px] text-gray-500 -mt-1 tracking-wider">Digital Excellence</span>
-            </div>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors">Home</Link>
-            <Link to="/uitgebreid" className="text-sm text-gray-400 hover:text-white transition-colors">Uitgebreid</Link>
-            <a href="#voorbeelden" className="text-sm text-gray-400 hover:text-white transition-colors">Voorbeelden</a>
-            <a href="https://www.sandedesign.nl/website-aanvraag/standaard" target="_blank" rel="noopener noreferrer" className="px-5 py-2 text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 rounded-full hover:shadow-lg hover:shadow-purple-500/30 transition-all">
-              Start aanvraag
-            </a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader
+        navItems={[
+          { label: 'Home', href: '/' },
+          { label: 'Uitgebreid', href: '/uitgebreid' },
+          { label: 'Voorbeelden', href: '#voorbeelden' },
+        ]}
+        ctaLabel="Start aanvraag"
+        ctaHref="https://www.sandedesign.nl/website-aanvraag/standaard"
+      />
 
       {/* Hero */}
       <section className="relative py-24 lg:py-32">
