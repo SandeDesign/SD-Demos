@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { demos } from '../config/demos';
 import { multiPageDemos } from '../demos/multi-page';
+import SiteHeader from '../components/SiteHeader';
 
 const nicheLabels: Record<string, string> = {
   kapper: 'Kapper', restaurant: 'Restaurant', fitness: 'Fitness', advocaat: 'Advocaat',
@@ -14,24 +15,14 @@ const nicheLabels: Record<string, string> = {
 const Homepage = () => {
   return (
     <div className="min-h-screen bg-[#0a0b1a] text-white overflow-x-hidden">
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0b1a]/80 backdrop-blur-xl">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="https://fl-group.org/wp-content/uploads/2025/03/New-Logo-SandeDesign-150x150.png" alt="SandeDesign" className="w-10 h-10" />
-            <div>
-              <span className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">SandeDesign</span>
-              <span className="block text-[10px] text-gray-500 -mt-1 tracking-wider">Digital Excellence</span>
-            </div>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#onepage" className="text-sm text-gray-400 hover:text-white transition-colors">Onepage Demo's</a>
-            <a href="#multipage" className="text-sm text-gray-400 hover:text-white transition-colors">Multi-page Demo's</a>
-            <Link to="/standaard" className="text-sm text-gray-400 hover:text-white transition-colors">Standaard pakket</Link>
-            <Link to="/uitgebreid" className="text-sm text-gray-400 hover:text-white transition-colors">Uitgebreid pakket</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader
+        navItems={[
+          { label: 'Onepage', href: '#onepage' },
+          { label: 'Multi-page', href: '#multipage' },
+          { label: 'Standaard pakket', href: '/standaard' },
+          { label: 'Uitgebreid pakket', href: '/uitgebreid' },
+        ]}
+      />
 
       {/* Hero */}
       <section className="py-20 text-center">
